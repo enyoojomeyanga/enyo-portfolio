@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-border: #e2e4ea;
+  --color-border-strong: #c9cdd8;
+
+  /* Text */
+  --color-ink: #14171f;
+  --color-ink-muted: #4b5163;
+  --color-ink-faint: #7a8095;
+
+  /* Brand */
+  --color-primary: #3b5bdb;
+  --color-primary-hover: #2f49ad;
+  --color-accent: #6c4fd1;
+  --color-signal: #2e9e6b;
+
+  /* Status system (Built / Building / Exploring) */
+  --color-status-built: #2e9e6b;
+  --color-status-built-bg: #e6f5ee;
+  --color-status-building: #3b5bdb;
+  --color-status-building-bg: #e9edfb;
+  --color-status-exploring: #6c4fd1;
+  --color-status-exploring-bg: #efeafb;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-accent: var(--color-accent);
+  --color-signal: var(--color-signal);
+
+  --font-display: "Avenir Next", "Segoe UI", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
