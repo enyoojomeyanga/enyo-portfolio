@@ -1,52 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  /* Surfaces */
-  --color-bg: #f7f8fa;
-  --color-surface: #ffffff;
-  --color-border: #e2e4ea;
-  --color-border-strong: #c9cdd8;
+  /* Core surfaces */
+  --color-bg: #f4f1e8;
+  --color-surface: #fffdf7;
+  --color-surface-soft: #ebe6d8;
+
+  /* Strong visual fields */
+  --color-dark: #171a1c;
+  --color-dark-soft: #252a2c;
+  --color-primary-field: #0968D7;
+  --color-accent-field: #d95c3d;
+
+  /* Borders */
+  --color-border: #d7d1c2;
+  --color-border-strong: #aaa393;
 
   /* Text */
-  --color-ink: #14171f;
-  --color-ink-muted: #4b5163;
-  --color-ink-faint: #7a8095;
+  --color-ink: #171817;
+  --color-ink-muted: #555650;
+  --color-ink-faint: #7c7c73;
+  --color-ink-inverse: #f8f5eb;
 
   /* Brand */
-  --color-primary: #3b5bdb;
-  --color-primary-hover: #2f49ad;
-  --color-accent: #6c4fd1;
+  --color-primary: #3157d5;
+  --color-primary-hover: #2443aa;
+  --color-accent: #7048c8;
   --color-signal: #2e9e6b;
 
-  /* Status system (Built / Building / Exploring) */
+  /* Status system */
   --color-status-built: #2e9e6b;
-  --color-status-built-bg: #e6f5ee;
-  --color-status-building: #3b5bdb;
-  --color-status-building-bg: #e9edfb;
-  --color-status-exploring: #6c4fd1;
-  --color-status-exploring-bg: #efeafb;
+  --color-status-built-bg: #e1eee7;
+
+  --color-status-building: #3157d5;
+  --color-status-building-bg: #e4e9f8;
+
+  --color-status-exploring: #7048c8;
+  --color-status-exploring-bg: #ebe5f7;
 }
 
 @theme inline {
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
+  --color-surface-soft: var(--color-surface-soft);
+
+  --color-dark: var(--color-dark);
+  --color-dark-soft: var(--color-dark-soft);
+  --color-primary-field: var(--color-primary-field);
+  --color-accent-field: var(--color-accent-field);
+
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
+
   --color-ink: var(--color-ink);
   --color-ink-muted: var(--color-ink-muted);
   --color-ink-faint: var(--color-ink-faint);
+  --color-ink-inverse: var(--color-ink-inverse);
+
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
   --color-accent: var(--color-accent);
   --color-signal: var(--color-signal);
 
-  --font-display: "Avenir Next", "Segoe UI", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  
 }
+
+/* --------------------------------------------------
+   Base
+-------------------------------------------------- */
 
 * {
   border-color: var(--color-border);
@@ -57,25 +81,59 @@ html {
 }
 
 body {
-  background: var(--color-bg);
+  background-color: var(--color-bg);
   color: var(--color-ink);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
+
+/* --------------------------------------------------
+   Subtle atmospheric background
+-------------------------------------------------- */
+
+body {
+  background-image:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(255, 255, 255, 0.42),
+      transparent 32rem
+    ),
+    radial-gradient(
+      circle at 85% 35%,
+      rgba(255, 255, 255, 0.22),
+      transparent 28rem
+    );
+  background-attachment: fixed;
+}
+
+/* --------------------------------------------------
+   Selection
+-------------------------------------------------- */
 
 ::selection {
   background: var(--color-accent);
-  color: white;
+  color: #ffffff;
 }
+
+/* --------------------------------------------------
+   Keyboard focus
+-------------------------------------------------- */
 
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: 2px;
 }
 
+/* --------------------------------------------------
+   Reduced motion
+-------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

@@ -3,23 +3,31 @@ import { navigation, profile } from "@/content/profile";
 
 export function Nav() {
   return (
-    <header className="border-b border-(--color-border) bg-(--color-surface)/80 backdrop-blur supports-[backdrop-filter]:bg-(--color-surface)/60 sticky top-0 z-40">
+    <header className="sticky top-0 z-40 border-b border-(--color-border) bg-(--color-bg)/90 backdrop-blur supports-[backdrop-filter]:bg-(--color-bg)/75">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
       >
         <Link
           href="/"
-          className="font-display text-sm font-semibold tracking-tight text-(--color-ink)"
+          className="group flex flex-col leading-none"
+          aria-label={`${profile.fullName} — Home`}
         >
-          {profile.fullName}
+          <span className="font-display text-sm font-semibold tracking-tight text-(--color-ink) transition-colors group-hover:text-(--color-primary)">
+            {profile.fullName}
+          </span>
+
+          <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-(--color-ink-faint)">
+            {profile.role}
+          </span>
         </Link>
-        <ul className="flex items-center gap-6 font-mono text-xs uppercase tracking-wide text-(--color-ink-muted)">
+
+        <ul className="flex items-center gap-5 font-mono text-[11px] uppercase tracking-[0.16em] text-(--color-ink-muted) sm:gap-7">
           {navigation.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="transition-colors hover:text-(--color-primary)"
+                className="relative py-2 transition-colors duration-200 hover:text-(--color-primary)"
               >
                 {item.label}
               </Link>
