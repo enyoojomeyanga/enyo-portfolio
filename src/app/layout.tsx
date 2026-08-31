@@ -23,6 +23,9 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://enyo-portfolio.vercel.app";
+
 export const metadata: Metadata = {
   title: `${profile.fullName} — ${profile.role}`,
   description: profile.tagline,
