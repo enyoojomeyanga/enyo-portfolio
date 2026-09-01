@@ -9,7 +9,7 @@
   /* Strong visual fields */
   --color-dark: #171a1c;
   --color-dark-soft: #252a2c;
-  --color-primary-field: #0968D7;
+  --color-primary-field: #0077ff;
   --color-accent-field: #d95c3d;
 
   /* Borders */
@@ -23,8 +23,8 @@
   --color-ink-inverse: #f8f5eb;
 
   /* Brand */
-  --color-primary: #3157d5;
-  --color-primary-hover: #2443aa;
+  --color-primary: #0077ff;
+  --color-primary-hover: #0066dd;
   --color-accent: #7048c8;
   --color-signal: #2e9e6b;
 

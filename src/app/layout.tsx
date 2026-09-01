@@ -38,9 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable} antialiased flex min-h-screen flex-col`}
-      >
+      <body>
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

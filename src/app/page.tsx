@@ -10,7 +10,7 @@ export default function Home() {
 {/* Hero */}
 <section className="relative overflow-hidden border-b border-(--color-border) bg-(--color-primary-field)">
   <div className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pb-28 sm:pt-24 lg:pb-36 lg:pt-32">
-    <SectionLabel number="01">
+    <SectionLabel>
       {profile.role}
     </SectionLabel>
 
@@ -59,68 +59,77 @@ export default function Home() {
   />
 </section>
 
-      {/* Current State */}
-      <section className="border-y border-(--color-border) bg-(--color-surface)">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-          <SectionLabel number="02">
-            Current state
-          </SectionLabel>
+{/* Current State */}
+<section className="border-y border-(--color-border) bg-(--color-surface)">
+  <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+    <SectionLabel>
+      Current state
+    </SectionLabel>
 
-          <div className="mt-8 max-w-2xl">
-            <p className="max-w-xl font-sans text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
-              {profile.currentFocus}
-            </p>
-          </div>
+    <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-20">
+      <div>
+        <p className="max-w-sm font-display text-2xl font-medium leading-snug tracking-tight text-(--color-ink) sm:text-3xl">
+          Building toward something bigger.
+        </p>
+      </div>
 
-          <div className="mt-12 grid gap-10 border-t border-(--color-border) pt-8 sm:grid-cols-3 sm:gap-6">
-            {(["built", "building", "exploring"] as const).map((status) => {
-              const statusProjects = projects.filter(
-                (project) => project.status === status
-              );
+      <div>
+        <p className="max-w-2xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
+          {profile.currentFocus}
+        </p>
 
-              return (
-                <div key={status}>
-                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                    <StatusBadge status={status} />
-                  </div>
+        <div className="mt-12 grid border-t border-(--color-border) sm:grid-cols-3">
+          {(["built", "building", "exploring"] as const).map((status) => {
+            const statusProjects = projects.filter(
+              (project) => project.status === status
+            );
 
-                  <ul className="mt-5 space-y-3">
-                    {statusProjects.length > 0 ? (
-                      statusProjects.map((project) => (
-                        <li key={project.slug}>
-                          <Link
-                            href={`/work/${project.slug}`}
-                            className="group flex items-start justify-between gap-4"
+            return (
+              <div
+                key={status}
+                className="border-b border-(--color-border) py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0"
+              >
+                <StatusBadge status={status} />
+
+                <ul className="mt-5 space-y-3">
+                  {statusProjects.length > 0 ? (
+                    statusProjects.map((project) => (
+                      <li key={project.slug}>
+                        <Link
+                          href={`/work/${project.slug}`}
+                          className="group flex items-center justify-between gap-4"
+                        >
+                          <span className="font-display text-sm font-medium text-(--color-ink) transition-colors group-hover:text-(--color-primary)">
+                            {project.title}
+                          </span>
+
+                          <span
+                            className="font-mono text-xs text-(--color-ink-faint) transition-transform duration-200 group-hover:translate-x-1"
+                            aria-hidden="true"
                           >
-                            <span className="font-display text-sm font-medium text-(--color-ink) transition-colors group-hover:text-(--color-primary)">
-                              {project.title}
-                            </span>
-
-                            <span
-                              className="font-mono text-xs text-(--color-ink-faint) transition-transform duration-200 group-hover:translate-x-1"
-                              aria-hidden="true"
-                            >
-                              →
-                            </span>
-                          </Link>
-                        </li>
-                      ))
-                    ) : (
-                      <li className="font-mono text-xs text-(--color-ink-faint)">
-                        Nothing here yet.
+                            →
+                          </span>
+                        </Link>
                       </li>
-                    )}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
+                    ))
+                  ) : (
+                    <li className="font-mono text-xs text-(--color-ink-faint)">
+                      Nothing here yet.
+                    </li>
+                  )}
+                </ul>
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* Selected Work */}
+{/* Selected Work */}
       <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-        <SectionLabel number="03">
+        <SectionLabel>
           Selected work
         </SectionLabel>
 
@@ -179,10 +188,10 @@ export default function Home() {
 </ul>
       </section>
 
-      {/* Approach */}
+{/* Approach */}
       <section className="border-y border-(--color-border) bg-(--color-surface)">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-          <SectionLabel number="04">
+          <SectionLabel>
             Approach
           </SectionLabel>
 
