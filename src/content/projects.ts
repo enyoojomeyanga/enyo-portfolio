@@ -4,6 +4,10 @@
 
 export type ProjectStatus = "built" | "building" | "exploring";
 
+// Controls which placeholder thumbnail is rendered on the homepage
+// "Selected work" list until real screenshots are supplied.
+export type ThumbnailVariant = "terminal" | "portrait" | "app-mockup";
+
 export type Project = {
   slug: string;
   title: string;
@@ -18,6 +22,7 @@ export type Project = {
   improve: string;
   // TODO(confirm): add real repo link when ready to share
   repoUrl: string | null;
+  thumbnail: ThumbnailVariant;
 };
 
 export const projects: Project[] = [
@@ -41,6 +46,7 @@ export const projects: Project[] = [
     improve:
       "Would restructure the parsing logic into smaller, independently testable functions, and add unit tests rather than relying on manual verification.",
     repoUrl: null,
+    thumbnail: "terminal",
   },
   {
     slug: "ascii-art-generator",
@@ -62,5 +68,54 @@ export const projects: Project[] = [
     improve:
       "Would add support for custom banner files and clearer error messages for invalid input.",
     repoUrl: null,
+    thumbnail: "portrait",
+  },
+  // TODO(confirm): update this entry as the project develops — details below
+  // are an honest snapshot of a project still in progress, not a finished
+  // case study.
+  {
+    slug: "ai-study-companion",
+    title: "AI Study Companion",
+    status: "building",
+    stack: ["Python", "AI", "In Progress"],
+    summary:
+      "An AI-powered assistant that helps learners study smarter and stay consistent.",
+    problem:
+      "Studying effectively is hard to sustain alone — people lose track of what to review, when, and whether they're actually retaining it.",
+    approach:
+      "Building an assistant that turns study material into structured review sessions and nudges the learner to stay consistent over time.",
+    implementation:
+      "Work in progress — currently building the core study-session and review logic in Python.",
+    result:
+      "Not yet complete. No results to report while the core functionality is still being built.",
+    learned:
+      "Still early, but already learning a lot about structuring an AI-assisted workflow around a real, recurring habit.",
+    improve:
+      "Too early to say — will revisit once the first working version is in daily use.",
+    repoUrl: null,
+    thumbnail: "app-mockup",
+  },
+  // TODO(confirm): update this entry as the project develops.
+  {
+    slug: "portfolio-website",
+    title: "Portfolio Website",
+    status: "building",
+    stack: ["Next.js", "TypeScript"],
+    summary:
+      "This site — built and iterated on as a place to show real, disclosed work.",
+    problem:
+      "Needed a home for my work that's honest about what's actually built versus still in progress.",
+    approach:
+      "Built with Next.js and Tailwind, keeping content and status data separate from layout so it's easy to keep accurate over time.",
+    implementation:
+      "Ongoing — refining layout, content, and design as the site evolves alongside the work it describes.",
+    result:
+      "Live and evolving. Not a finished, static artifact.",
+    learned:
+      "Learning how to keep a personal site honest and low-maintenance rather than over-designed.",
+    improve:
+      "Will keep refining structure and content as more real projects are ready to show.",
+    repoUrl: null,
+    thumbnail: "app-mockup",
   },
 ];

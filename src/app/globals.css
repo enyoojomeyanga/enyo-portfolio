@@ -1,71 +1,117 @@
 @import "tailwindcss";
 
 :root {
-  /* Core surfaces */
-  --color-bg: #f4f1e8;
-  --color-surface: #fffdf7;
-  --color-surface-soft: #ebe6d8;
+  /* --------------------------------------------------
+     Core surfaces
+  -------------------------------------------------- */
 
-  /* Strong visual fields */
-  --color-dark: #171a1c;
-  --color-dark-soft: #252a2c;
-  --color-primary-field: #0077ff;
-  --color-accent-field: #d95c3d;
+  --color-bg: #eeece6;
+  --color-surface: #f7f5ef;
+  --color-surface-soft: #f1eff8;
 
-  /* Borders */
-  --color-border: #d7d1c2;
-  --color-border-strong: #aaa393;
+  --color-border: #d8d5cc;
+  --color-border-strong: #bdb9ae;
 
-  /* Text */
+  /* --------------------------------------------------
+     Text
+  -------------------------------------------------- */
+
   --color-ink: #171817;
   --color-ink-muted: #555650;
   --color-ink-faint: #7c7c73;
-  --color-ink-inverse: #f8f5eb;
 
-  /* Brand */
+  /* --------------------------------------------------
+     Brand
+  -------------------------------------------------- */
+
   --color-primary: #0077ff;
   --color-primary-hover: #0066dd;
+
   --color-accent: #7048c8;
   --color-signal: #2e9e6b;
 
-  /* Status system */
-  --color-status-built: #2e9e6b;
-  --color-status-built-bg: #e1eee7;
+  /* --------------------------------------------------
+     Visual fields
+  -------------------------------------------------- */
 
-  --color-status-building: #3157d5;
-  --color-status-building-bg: #e4e9f8;
+  --color-dark: #171a1c;
+  --color-dark-soft: #252a2c;
+
+  --color-primary-field: #0077ff;
+  --color-accent-field: #7048c8;
+
+  /* --------------------------------------------------
+     Selected Work — blurple atmosphere
+  -------------------------------------------------- */
+
+  --color-blurple-start: #dce8ff;
+  --color-blurple-mid: #e7ddff;
+  --color-blurple-end: #f4e7f2;
+
+  /* --------------------------------------------------
+     Status system
+  -------------------------------------------------- */
+
+  --color-status-built: #2e9e6b;
+  --color-status-built-bg: #e2eee8;
+
+  --color-status-building: #0077ff;
+  --color-status-building-bg: #e4efff;
 
   --color-status-exploring: #7048c8;
-  --color-status-exploring-bg: #ebe5f7;
+  --color-status-exploring-bg: #ebe7f4;
 }
 
 @theme inline {
+  /* Surfaces */
+
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
   --color-surface-soft: var(--color-surface-soft);
 
-  --color-dark: var(--color-dark);
-  --color-dark-soft: var(--color-dark-soft);
-  --color-primary-field: var(--color-primary-field);
-  --color-accent-field: var(--color-accent-field);
-
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
+
+  /* Text */
 
   --color-ink: var(--color-ink);
   --color-ink-muted: var(--color-ink-muted);
   --color-ink-faint: var(--color-ink-faint);
-  --color-ink-inverse: var(--color-ink-inverse);
+
+  /* Brand */
 
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
+
   --color-accent: var(--color-accent);
   --color-signal: var(--color-signal);
 
+  /* Visual fields */
+
+  --color-dark: var(--color-dark);
+  --color-dark-soft: var(--color-dark-soft);
+
+  --color-primary-field: var(--color-primary-field);
+  --color-accent-field: var(--color-accent-field);
+
+  /* Status */
+
+  --color-status-built: var(--color-status-built);
+  --color-status-built-bg: var(--color-status-built-bg);
+
+  --color-status-building: var(--color-status-building);
+  --color-status-building-bg: var(--color-status-building-bg);
+
+  --color-status-exploring: var(--color-status-exploring);
+  --color-status-exploring-bg: var(--color-status-exploring-bg);
+
+  /* Typography */
+
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  
 }
 
 /* --------------------------------------------------
@@ -88,20 +134,20 @@ body {
 }
 
 /* --------------------------------------------------
-   Subtle atmospheric background
+   Atmospheric background
 -------------------------------------------------- */
 
 body {
   background-image:
     radial-gradient(
-      circle at 15% 10%,
-      rgba(255, 255, 255, 0.42),
-      transparent 32rem
+      circle at 12% 8%,
+      rgba(255, 255, 255, 0.5),
+      transparent 30rem
     ),
     radial-gradient(
-      circle at 85% 35%,
-      rgba(255, 255, 255, 0.22),
-      transparent 28rem
+      circle at 88% 30%,
+      rgba(255, 255, 255, 0.28),
+      transparent 26rem
     );
   background-attachment: fixed;
 }
@@ -111,7 +157,7 @@ body {
 -------------------------------------------------- */
 
 ::selection {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: #ffffff;
 }
 

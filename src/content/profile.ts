@@ -11,7 +11,7 @@ export const profile = {
     "Building intelligent systems that turn difficult, repetitive problems into simpler, more productive processes.",
 
   missionShort:
-    "I work on the problems people bring me, and the ones I notice myself — turning them into working software.",
+    "I work on the problems people bring me, and the ones I notice myself; turning them into working software.",
 
   // TODO(confirm): replace with real contact email
   email: "meyangaenyoojo@gmail.com",
@@ -29,7 +29,7 @@ export const profile = {
   location: null as string | null,
 
   currentFocus:
-    "Currently building in Python, after roughly six months of hands-on work in Go.",
+    "I'm currently focused on becoming a better AI Engineer. I build, break, learn, and repeat. Every single day.",
 };
 
 export const navigation = [
