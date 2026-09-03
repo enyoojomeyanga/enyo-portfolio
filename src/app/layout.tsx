@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import {
+  Space_Grotesk,
+  IBM_Plex_Sans,
+  IBM_Plex_Mono,
+} from "next/font/google";
+
 import "./globals.css";
+
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { profile } from "@/content/profile";
@@ -23,9 +29,6 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://enyo-portfolio.vercel.app";
-
 export const metadata: Metadata = {
   title: `${profile.fullName} — ${profile.role}`,
   description: profile.tagline,
@@ -38,9 +41,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body >
+      <body
+        className={`
+          ${spaceGrotesk.variable}
+          ${plexSans.variable}
+          ${plexMono.variable}
+          antialiased
+        `}
+      >
         <Nav />
-        <main className="flex-1">{children}</main>
+
+        <main className="min-h-screen">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

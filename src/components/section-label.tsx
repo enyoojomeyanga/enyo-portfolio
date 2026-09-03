@@ -13,13 +13,13 @@ export function SectionLabel({
     <div className="flex items-center gap-3">
       <span
         aria-hidden="true"
-        className={`h-2 w-2 rounded-full ${
+        className={`h-1.5 w-1.5 rounded-full ${
           isBlue ? "bg-white" : "bg-(--color-primary)"
         }`}
       />
 
       <p
-        className={`font-mono text-[11px] uppercase tracking-[0.18em] ${
+        className={`font-mono text-[10px] font-medium uppercase tracking-[0.2em] ${
           isBlue ? "text-white/80" : "text-(--color-ink-faint)"
         }`}
       >
@@ -28,7 +28,7 @@ export function SectionLabel({
 
       <span
         aria-hidden="true"
-        className={`h-px w-10 ${
+        className={`h-px w-12 ${
           isBlue ? "bg-white/30" : "bg-(--color-border-strong)"
         }`}
       />

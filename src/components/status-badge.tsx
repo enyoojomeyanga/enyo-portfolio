@@ -23,16 +23,23 @@ const STATUS_CONFIG: Record<
 
 export function StatusBadge({ status }: { status: ProjectStatus }) {
   const config = STATUS_CONFIG[status];
+
   return (
     <span
-      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] uppercase tracking-wide"
-      style={{ color: config.color, backgroundColor: config.bg }}
+      className="inline-flex items-center gap-1.5 rounded-full border border-black/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em]"
+      style={{
+        color: config.color,
+        backgroundColor: config.bg,
+      }}
     >
       <span
-        className="h-1.5 w-1.5 rounded-full"
+        className={`h-1.5 w-1.5 rounded-full ${
+          status === "building" ? "status-building-dot" : ""
+        }`}
         style={{ backgroundColor: config.color }}
         aria-hidden="true"
       />
+
       {config.label}
     </span>
   );
