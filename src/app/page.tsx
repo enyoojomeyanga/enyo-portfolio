@@ -10,8 +10,14 @@ export default function Home() {
   return (
     <>
 {/* Hero */}
-<section className="relative overflow-hidden border-b border-(--color-border) bg-white">
-  <div className="mx-auto max-w-6xl px-6 pb-20 pt-16 text-left sm:pb-28 sm:pt-24 lg:pb-36 lg:pt-32">
+<section
+  className="relative overflow-hidden border-y border-(--color-border)"
+  style={{
+    backgroundImage: "url('/images/blue-network.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>  <div className="mx-auto max-w-6xl px-6 pb-20 pt-16 text-left sm:pb-28 sm:pt-24 lg:pb-36 lg:pt-32">
     <div className="flex items-center gap-3">
       <span
         aria-hidden="true"

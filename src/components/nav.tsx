@@ -4,7 +4,7 @@ import { navigation, profile } from "@/content/profile";
 
 export function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-3 sm:px-5">
+    <header className="sticky top-0 z-40 mx-auto rounded-[20px] border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl">
       <nav
         aria-label="Primary"
         className="
@@ -34,8 +34,8 @@ export function Nav() {
             absolute inset-0 -z-10
             bg-[linear-gradient(
               135deg,
-              rgba(48, 65, 90, 0.82),
-              rgba(10,65,125,0.68)
+              rgba(8, 16, 29, 0.82),
+              rgba(7, 31, 56, 0.68)
             )]
           "
         />
@@ -64,13 +64,11 @@ export function Nav() {
         </Link>
 
         {/* Navigation */}
-        <ul className="relative z-10 hidden items-center gap-5 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70 sm:flex sm:gap-7">
-          {navigation.map((item) => (
+        <ul className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-white sm:gap-3">          {navigation.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="transition-colors duration-200 hover:text-white"
-              >
+className="relative rounded-full px-4 py-2 text-white transition-all duration-200 hover:bg-white/15 hover:text-white"                   >
                 {item.label}
               </Link>
             </li>
