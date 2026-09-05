@@ -1,37 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Enyo-ojo's Portfolio
+
+A personal portfolio website built with **Next.js** and bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Make sure you have **Node.js** and **npm** installed.
+
+Check your installation:
+
+```bash
+node --version
+npm --version
+```
+
+If `node` or `npm` is not recognized, install Node.js first. Using **NVM (Node Version Manager)** is recommended.
+
+### Install Node.js with NVM
+
+Install NVM:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+Reload your shell:
+
+```bash
+source ~/.zshrc
+```
+
+Install the latest LTS version of Node.js:
+
+```bash
+nvm install --lts
+nvm use --lts
+```
+
+Verify the installation:
+
+```bash
+node --version
+npm --version
+```
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/enyoojomeyanga/enyo-portfolio.git
+cd enyo-portfolio
+```
+
+### Install Dependencies
+
+Install the project's dependencies:
+
+```bash
+npm install
+```
+
+### Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to view the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application automatically updates when you modify the source files.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development
+
+The main page can be edited at:
+
+```text
+src/app/page.tsx
+```
+
+Depending on the project structure, other pages and components can be found inside the `src` directory.
+
+### Common Commands
+
+| Command         | Description                       |
+| --------------- | --------------------------------- |
+| `npm install`   | Install project dependencies      |
+| `npm run dev`   | Start the development server      |
+| `npm run build` | Create a production build         |
+| `npm start`     | Start the production server       |
+| `npm run lint`  | Check the code for linting issues |
+
+## Technologies
+
+* **Next.js**
+* **React**
+* **TypeScript**
+* **Node.js**
+* **npm**
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) for font optimization and the [Geist](https://vercel.com/font) font family.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+* [Next.js Documentation](https://nextjs.org/docs)
+* [Learn Next.js](https://nextjs.org/learn)
+* [Next.js GitHub Repository](https://github.com/vercel/next.js)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The portfolio can be deployed using the [Vercel Platform](https://vercel.com/new).
 
-## Deploy on Vercel
+For more information, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Enyo-ojo-s-Portfolio
+**Enyo-ojo Meyanga**
+
+* GitHub: [@enyoojomeyanga](https://github.com/enyoojomeyanga)
+* LinkedIn: [Enyo-ojo Meyanga](https://linkedin.com/in/enyoojomeyanga)
