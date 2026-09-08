@@ -16,8 +16,8 @@
   --color-ink-faint: #667085;
 
   /* Primary action */
-  --color-primary: #3155D8;
-  --color-primary-hover: #2442B8;
+  --color-primary: #0037ff;
+  --color-primary-hover: #0022ab;
 
   /* Accent */
   --color-accent: #FF5263;
@@ -31,14 +31,14 @@
   --color-signal: #607EBC;
 
   /* Status */
-  --color-status-built: #397A5A;
-  --color-status-built-bg: #E5EEE8;
+  --color-status-built: #00984c;
+  --color-status-built-bg: #adf8c6;
 
-  --color-status-building: #6356C7;
-  --color-status-building-bg: #ECE9FA;
+  --color-status-building: #6251e3;
+  --color-status-building-bg: #cec3ff;
 
-  --color-status-exploring: #C46B18;
-  --color-status-exploring-bg: #FFF0DC;
+  --color-status-exploring: #c07c08;
+  --color-status-exploring-bg: hsl(34, 86%, 75%);
 }
 
 /* --------------------------------------------------

@@ -124,21 +124,18 @@ export default function Home() {
       ================================================== */}
       <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
         <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
-          <SectionLabel>Current state</SectionLabel>
+          <SectionLabel variant="blue">Current state</SectionLabel>
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-[0.8fr_1.7fr] lg:gap-24">
+          <div className="mt-10 grid gap-7 lg:grid-cols-[0.8fr_1.7fr] lg:gap-24">
             <div>
-              <p className="max-w-sm font-display text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[var(--surface-text-dark)] sm:text-4xl">
+              <p className="max-w-sm font-display text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-black sm:text-4xl">
                 Building toward something bigger.
               </p>
 
-              <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--surface-text-light)]">
-                02 / CURRENT STATE
-              </p>
             </div>
 
             <div>
-              <p className="max-w-2xl text-base leading-relaxed text-[var(--surface-text-light)] sm:text-lg">
+              <p className="max-w-2xl text-base leading-relaxed text-[var(--surface-text-dark)] sm:text-lg">
                 {profile.currentFocus}
               </p>
 
@@ -186,7 +183,7 @@ export default function Home() {
                                 <span
                                   className="
                                     pt-0.5 font-mono text-xs
-                                    text-(--color-ink-faint)
+                                    text-(text-[var(--surface-text-dark)])
                                     transition-transform duration-180
                                     group-hover:translate-x-0.5
                                   "
@@ -195,7 +192,7 @@ export default function Home() {
                                   ↗
                                 </span>
 
-                                <span className="font-display text-sm font-medium text-(--color-ink) transition-colors duration-180 group-hover:text-(--color-primary)">
+                                <span className="font-display text-sm font-medium text-(text-[var(--surface-text-dark)]) transition-colors duration-180 group-hover:text-(--color-primary)">
                                   {item.title}
                                 </span>
                               </Link>
@@ -339,22 +336,19 @@ export default function Home() {
       ================================================== */}
       <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
         <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
-          <SectionLabel>Approach</SectionLabel>
+          <SectionLabel variant="blue">Approach (HOW I THINK)</SectionLabel>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.8fr_1.7fr] lg:gap-24">
+          <div className="mt-10 grid gap-7 lg:grid-cols-[0.8fr_1.7fr] lg:gap-24">
+
             <div>
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                04 / HOW I THINK
+              <p className="max-w-3xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-black sm:text-4xl">
+                I care about the problem before I care about the technology
+                used to solve it.
               </p>
             </div>
 
             <div>
-              <p className="max-w-3xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-(--color-ink) sm:text-4xl">
-                I care about the problem before I care about the technology
-                used to solve it.
-              </p>
-
-              <p className="mt-7 max-w-2xl text-sm leading-relaxed text-(--color-ink-muted)">
+              <p className="max-w-2xl text-base leading-relaxed text-[var(--surface-text-dark)] sm:text-lg">
                 I&apos;m interested in understanding what is actually
                 difficult, finding where effort is being wasted, and building
                 something that makes the work easier.
@@ -367,7 +361,7 @@ export default function Home() {
                   font-mono text-[10px] uppercase
                   tracking-[0.16em]
                   text-(--color-primary)
-                  transition-colors duration-180
+                  transition-colors duration-500
                   hover:text-(--color-primary-hover)
                 "
               >
