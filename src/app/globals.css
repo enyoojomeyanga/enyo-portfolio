@@ -1,36 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #f5f1e8;
-  --color-surface: #fbf9f4;
-  --color-surface-soft: #eee9df;
+  /* Core */
+  --color-bg: #D0E0D6;
+  --color-surface: #607EBC;
+  --color-surface-soft: #E4E9F1;
 
-  --color-border: #d9d2c5;
-  --color-border-strong: #b9b0a1;
+  /* Borders */
+  --color-border: #C7D0DC;
+  --color-border-strong: #9EADBF;
 
-  --color-ink: #17151a;
-  --color-ink-muted: #69646a;
-  --color-ink-faint: #918b83;
+  /* Typography */
+  --white: #FFFFFF;
+  --color-ink: #101828;
+  --color-ink-muted: #475467;
+  --color-ink-faint: #667085;
 
-  --color-primary: #7c3aed;
-  --color-primary-hover: #6828d9;
+  --color-ink-on-surface: #FFFFFF;
+  --color-ink-on-surface-muted: rgba(255, 255, 255, 0.82);
+  --color-ink-on-surface-faint: rgba(255, 255, 255, 0.68);
 
-  --color-accent: #ff4f64;
-  --color-orange: #ff9f1c;
+  /* Primary action */
+  --color-primary: #3155D8;
+  --color-primary-hover: #2442B8;
 
-  --color-dark: #17151a;
-  --color-dark-soft: #25212b;
+  /* Accent */
+  --color-accent: #FF5263;
+  --color-orange: #F59E0B;
 
-  --color-signal: #6f42d9;
+  /* Dark surfaces */
+  --color-dark: #172033;
+  --color-dark-soft: #27324A;
 
-  --color-status-built: #397a5a;
-  --color-status-built-bg: #e5eee8;
+  /* Decorative / signal */
+  --color-signal: #607EBC;
 
-  --color-status-building: #7c3aed;
-  --color-status-building-bg: #eee8fc;
+  /* Status */
+  --color-status-built: #397A5A;
+  --color-status-built-bg: #E5EEE8;
 
-  --color-status-exploring: #c46b18;
-  --color-status-exploring-bg: #fff0dc;
+  --color-status-building: #6356C7;
+  --color-status-building-bg: #ECE9FA;
+
+  --color-status-exploring: #C46B18;
+  --color-status-exploring-bg: #FFF0DC;
 }
 
 @theme inline {
@@ -44,6 +57,9 @@
   --color-ink: var(--color-ink);
   --color-ink-muted: var(--color-ink-muted);
   --color-ink-faint: var(--color-ink-faint);
+  --color-ink-on-surface: var(--color-ink-on-surface);
+  --color-ink-on-surface-muted: var(--color-ink-on-surface-muted);
+  --color-ink-on-surface-faint: var(--color-ink-on-surface-faint);
 
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
@@ -86,18 +102,20 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
+
   background:
     radial-gradient(
       circle at 8% 5%,
-      rgba(124, 58, 237, 0.055),
+      rgba(49, 85, 216, 0.08),
       transparent 28rem
     ),
     radial-gradient(
       circle at 92% 34%,
-      rgba(255, 79, 100, 0.035),
+      rgba(255, 82, 99, 0.05),
       transparent 25rem
     ),
     var(--color-bg);
+
   color: var(--color-ink);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -140,7 +158,7 @@ button:focus-visible {
   width: 120%;
   height: 70%;
   left: -10%;
-  border: 1px solid rgba(124, 58, 237, 0.075);
+  border: 1px solid rgba(49, 85, 216, 0.09);
   border-radius: 50%;
   transform: rotate(-9deg);
 }
@@ -152,10 +170,9 @@ button:focus-visible {
 .signal-field::after {
   top: 27%;
   left: -15%;
-  border-color: rgba(255, 79, 100, 0.045);
+  border-color: rgba(255, 82, 99, 0.055);
   transform: rotate(7deg);
 }
-
 /* --------------------------------------------------
    Minimal reveal
 -------------------------------------------------- */
@@ -189,11 +206,13 @@ button:focus-visible {
 -------------------------------------------------- */
 
 .glass-nav {
-  background: rgba(251, 249, 244, 0.76);
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(228, 233, 241, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+
   box-shadow:
-    0 14px 40px rgba(23, 21, 26, 0.08),
+    0 14px 40px rgba(23, 32, 51, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
   backdrop-filter: blur(22px) saturate(130%);
   -webkit-backdrop-filter: blur(22px) saturate(130%);
 }
