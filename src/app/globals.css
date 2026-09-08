@@ -207,7 +207,7 @@ button:focus-visible {
 -------------------------------------------------- */
 
 .glass-nav {
-  background: rgba(228, 233, 241, 0.72);
+  background: rgba(228, 233, 241, 0.80);
   border: 1px solid rgba(255, 255, 255, 0.65);
 
   box-shadow:
@@ -332,5 +332,39 @@ button:focus-visible {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+/* UI POLISH: NO COLOR CHANGE */
+.project-row {
+  border-radius: 14px;
+}
+
+.project-row:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.project-row,
+.surface-section a {
+  min-height: 44px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-row {
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      padding 220ms ease;
+  }
+
+  .project-row:hover {
+    transform: translateX(3px);
+  }
+}
+
+@media (max-width: 767px) {
+  .project-row {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }

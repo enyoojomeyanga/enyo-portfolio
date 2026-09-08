@@ -93,21 +93,12 @@ export default function Home() {
                   shadow-[0_24px_70px_rgba(23,21,26,0.10)]
                 "
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(124,58,237,0.16),transparent_32%),radial-gradient(circle_at_75%_75%,rgba(255,79,100,0.10),transparent_30%)]" />
-
-                <div className="absolute inset-5 rounded-[20px] border border-(--color-border) bg-(--color-bg)/70">
-                  <div className="flex h-full items-end p-5">
-                    <div>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                        CURRENT
-                      </p>
-
-                      <p className="mt-2 font-display text-xl font-semibold tracking-tight text-(--color-ink)">
-                        2026
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="/images/ME.jpg"
+                  alt="Enyo-ojo Meyanga"
+                  className="h-full w-full object-cover"
+              />
+               
               </div>
 
               <div className="mt-3 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em] text-(--color-ink-faint)">
@@ -268,8 +259,8 @@ export default function Home() {
                     project-row group
                     flex flex-col gap-5
                     py-7
-                    sm:grid sm:grid-cols-[42px_112px_1fr_auto]
-                    sm:items-center sm:gap-6
+                    sm:grid sm:grid-cols-[48px_140px_minmax(0,1fr)_auto]
+                    sm:items-center sm:gap-7
                   "
                 >
                   <span className="font-mono text-xs text-(--color-primary)">
@@ -291,7 +282,7 @@ export default function Home() {
                       {project.title}
                     </h3>
 
-                    <p className="mt-1 max-w-2xl text-sm leading-relaxed text-(--color-ink-muted)">
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-(--color-ink-muted)">
                       {project.summary}
                     </p>
 
@@ -302,7 +293,7 @@ export default function Home() {
                           className="
                             rounded-full
                             border border-(--color-border)
-                            bg-white/35
+                            bg-white/50
                             px-2.5 py-1
                             font-mono text-[10px]
                             text-(--color-ink-muted)

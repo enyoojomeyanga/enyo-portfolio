@@ -14,7 +14,10 @@ export function Footer() {
             </p>
 
             <p className="mt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-              Engineering record / {year}
+              
+              AI systems / LLMs / computer vision
+              <br />
+              Abuja, Nigeria
             </p>
           </div>
 
@@ -29,14 +32,17 @@ export function Footer() {
                 hover:text-(--color-primary-hover)
               "
             >
-              Get in touch
+              HAVE A PROBLEM WORTH SOLVING?
               <span className="transition-transform duration-180 group-hover:translate-x-1">
                 →
               </span>
             </Link>
 
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-(--color-ink-faint)">
-              © {year} {profile.fullName}
+              {profile.fullName}
+              <br/>
+              AI Engineer
+              © {year} 
             </p>
           </div>
         </div>

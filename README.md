@@ -1,120 +1,36 @@
-# Enyo-ojo's Portfolio
+# Enyo Portfolio Contact Page Customization
 
-A personal portfolio website built with **Next.js** and bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Changes only `src/app/contact/page.tsx`.
 
-## Getting Started
+Preserves the existing color system and does not modify `globals.css`.
 
-### Prerequisites
+## New structure
 
-Make sure you have **Node.js** and **npm** installed.
+- Contact / 04 editorial header
+- Problem-first headline
+- Three numbered contact reasons
+- Direct email section
+- GitHub and LinkedIn as primary links
+- Existing other social links retained at lower visual emphasis
+- Personal closing statement
 
-Check your installation:
+## Install
 
-```bash
-node --version
-npm --version
-```
-
-If `node` or `npm` is not recognized, install Node.js first. Using **NVM (Node Version Manager)** is recommended.
-
-### Install Node.js with NVM
-
-Install NVM:
+From the project root:
 
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-```
-
-Reload your shell:
-
-```bash
-source ~/.zshrc
-```
-
-Install the latest LTS version of Node.js:
-
-```bash
-nvm install --lts
-nvm use --lts
-```
-
-Verify the installation:
-
-```bash
-node --version
-npm --version
-```
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/enyoojomeyanga/enyo-portfolio.git
-cd enyo-portfolio
-```
-
-### Install Dependencies
-
-Install the project's dependencies:
-
-```bash
-npm install
-```
-
-### Run the Development Server
-
-```bash
+bash apply-contact-customization.sh
 npm run dev
 ```
 
-Open http://localhost:3000 in your browser to view the portfolio.
-
-The application automatically updates when you modify the source files.
-
-## Development
-
-The main page can be edited at:
+A backup is created at:
 
 ```text
-src/app/page.tsx
+src/app/contact/page.tsx.bak-contact-custom
 ```
 
-Depending on the project structure, other pages and components can be found inside the `src` directory.
+Restore with:
 
-### Common Commands
-
-| Command         | Description                       |
-| --------------- | --------------------------------- |
-| `npm install`   | Install project dependencies      |
-| `npm run dev`   | Start the development server      |
-| `npm run build` | Create a production build         |
-| `npm start`     | Start the production server       |
-| `npm run lint`  | Check the code for linting issues |
-
-## Technologies
-
-* **Next.js**
-* **React**
-* **TypeScript**
-* **Node.js**
-* **npm**
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) for font optimization and the [Geist](https://vercel.com/font) font family.
-
-## Learn More
-
-* [Next.js Documentation](https://nextjs.org/docs)
-* [Learn Next.js](https://nextjs.org/learn)
-* [Next.js GitHub Repository](https://github.com/vercel/next.js)
-
-## Deployment
-
-The portfolio can be deployed using the [Vercel Platform](https://vercel.com/new).
-
-For more information, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
-
-## Author
-
-**Enyo-ojo Meyanga**
-
-* GitHub: [@enyoojomeyanga](https://github.com/enyoojomeyanga)
-* LinkedIn: [Enyo-ojo Meyanga](https://linkedin.com/in/enyoojomeyanga)
+```bash
+cp src/app/contact/page.tsx.bak-contact-custom src/app/contact/page.tsx
+```
