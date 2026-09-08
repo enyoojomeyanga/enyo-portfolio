@@ -10,15 +10,10 @@
   --color-border: #C7D0DC;
   --color-border-strong: #9EADBF;
 
-  /* Typography */
-  --white: #FFFFFF;
+ /* Typography */
   --color-ink: #101828;
   --color-ink-muted: #475467;
   --color-ink-faint: #667085;
-
-  --color-ink-on-surface: #FFFFFF;
-  --color-ink-on-surface-muted: rgba(255, 255, 255, 0.82);
-  --color-ink-on-surface-faint: rgba(255, 255, 255, 0.68);
 
   /* Primary action */
   --color-primary: #3155D8;
@@ -46,6 +41,15 @@
   --color-status-exploring-bg: #FFF0DC;
 }
 
+/* --------------------------------------------------
+   Text colors specifically for #607EBC sections
+-------------------------------------------------- */
+
+.surface-section {
+  --surface-text-dark: #000000;
+  --surface-text-light: #FFFFFF;
+}
+
 @theme inline {
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
@@ -57,9 +61,6 @@
   --color-ink: var(--color-ink);
   --color-ink-muted: var(--color-ink-muted);
   --color-ink-faint: var(--color-ink-faint);
-  --color-ink-on-surface: var(--color-ink-on-surface);
-  --color-ink-on-surface-muted: var(--color-ink-on-surface-muted);
-  --color-ink-on-surface-faint: var(--color-ink-on-surface-faint);
 
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);

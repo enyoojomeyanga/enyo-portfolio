@@ -122,23 +122,23 @@ export default function Home() {
       {/* ==================================================
           CURRENT STATE
       ================================================== */}
-      <section className="border-b border-(--color-border) bg-(--color-surface)">
+      <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
         <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
           <SectionLabel>Current state</SectionLabel>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[0.8fr_1.7fr] lg:gap-24">
             <div>
-              <p className="max-w-sm font-display text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-(--color-ink) sm:text-4xl">
+              <p className="max-w-sm font-display text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[var(--surface-text-dark)] sm:text-4xl">
                 Building toward something bigger.
               </p>
 
-              <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
+              <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--surface-text-light)]">
                 02 / CURRENT STATE
               </p>
             </div>
 
             <div>
-              <p className="max-w-2xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
+              <p className="max-w-2xl text-base leading-relaxed text-[var(--surface-text-light)] sm:text-lg">
                 {profile.currentFocus}
               </p>
 
@@ -337,7 +337,7 @@ export default function Home() {
       {/* ==================================================
           APPROACH
       ================================================== */}
-      <section className="border-b border-(--color-border) bg-(--color-surface)">
+      <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
         <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
           <SectionLabel>Approach</SectionLabel>
 
