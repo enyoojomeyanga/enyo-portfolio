@@ -18,8 +18,8 @@ export const profile = {
 
   // TODO(confirm): add real profile URLs or remove the ones that don't apply
   links: {
-    github: "https://github.com/enyoojomeyanga", // e.g. "https://github.com/username"
-    linkedin: "https://linkedin.com/in/enyoojomeyanga", // e.g. "https://linkedin.com/in/username"
+    github: "https://github.com/enyoojomeyanga",
+    linkedin: "https://linkedin.com/in/enyoojomeyanga",
     facebook: "https://facebook.com/enyoojomeyanga",
     x:"https://x.com/enyoojomeyanga",
     instagram: "https://www.instagram.com/enyoojomeyanga/",
