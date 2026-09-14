@@ -207,12 +207,10 @@ export default function Home() {
                     status === "exploring"
                       ? exploringTopics.map((topic) => ({
                         key: topic.title,
-                        href: topic.href,
                         title: topic.title,
                       }))
                       : statusProjects.map((project) => ({
                         key: project.slug,
-                        href: `/work/${project.slug}`,
                         title: project.title,
                       }));
 
@@ -232,33 +230,23 @@ export default function Home() {
                         {items.length > 0 ? (
                           items.map((item) => (
                             <li key={item.key}>
-                              <Link
-                                href={item.href}
-                                className="group flex items-start gap-2"
-                              >
+                              <div className="flex items-start gap-2">
                                 <span
-                                  className="
-                                    pt-0.5 font-mono text-xs
-                                    text-white/50
-                                    transition-transform duration-180
-                                    group-hover:translate-x-0.5
-                                  "
+                                  className="pt-0.5 font-mono text-xs text-white/50"
                                   aria-hidden="true"
                                 >
-                                  ↗
+                                  •
                                 </span>
 
                                 <span
                                   className="
                                     font-display text-sm font-medium leading-snug
                                     text-white
-                                    transition-colors duration-180
-                                    group-hover:text-white/75
                                   "
                                 >
                                   {item.title}
                                 </span>
-                              </Link>
+                              </div>
                             </li>
                           ))
                         ) : (
@@ -267,19 +255,6 @@ export default function Home() {
                           </li>
                         )}
                       </ul>
-
-                      <Link
-                        href="/work"
-                        className="
-                          mt-5 inline-flex
-                          font-mono text-[10px] uppercase
-                          tracking-[0.14em] text-(--color-bg)
-                          transition-colors duration-180
-                          hover:text-(--color-section)
-                        "
-                      >
-                        View all {status} →
-                      </Link>
                     </div>
                   );
                 })}
