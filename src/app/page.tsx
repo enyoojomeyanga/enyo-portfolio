@@ -273,9 +273,9 @@ export default function Home() {
                         className="
                           mt-5 inline-flex
                           font-mono text-[10px] uppercase
-                          tracking-[0.14em] text-(--color-primary)
+                          tracking-[0.14em] text-(--color-bg)
                           transition-colors duration-180
-                          hover:text-(--color-primary-hover)
+                          hover:text-(--color-section)
                         "
                       >
                         View all {status} →
