@@ -10,41 +10,102 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-20">
-      <p className="font-mono text-xs uppercase tracking-widest text-(--color-primary)">
-        Work
-      </p>
-      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-(--color-ink) sm:text-4xl">
-        What I&apos;ve built, and what&apos;s in progress
-      </h1>
-      <p className="mt-6 max-w-2xl text-(--color-ink-muted)">
-        This isn&apos;t a long list — it&apos;s an honest one. Each entry
-        reflects real work, tagged by its actual state.
-      </p>
+    <main>
+      <section className="mx-auto max-w-[1180px] px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-24 lg:px-12">
+        {/* Page header */}
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-(--color-primary)"
+              />
 
-      <ul className="mt-12 divide-y divide-(--color-border) border-t border-(--color-border)">
-        {projects.map((project) => (
-          <li key={project.slug}>
-            <Link
-              href={`/work/${project.slug}`}
-              className="group flex flex-col gap-2 py-6 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <div>
-                <h2 className="font-display text-lg font-semibold text-(--color-ink) group-hover:text-(--color-primary)">
-                  {project.title}
-                </h2>
-                <p className="mt-1 text-sm text-(--color-ink-muted)">
-                  {project.summary}
-                </p>
-                <p className="mt-2 font-mono text-xs text-(--color-ink-faint)">
-                  {project.stack.join(" · ")}
-                </p>
-              </div>
-              <StatusBadge status={project.status} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+              <p className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-(--color-primary)">
+                Work / 03
+              </p>
+
+              <span
+                aria-hidden="true"
+                className="h-px w-10 bg-(--color-border-strong)"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h1 className="max-w-4xl font-display text-[clamp(3rem,6vw,5.5rem)] font-semibold leading-[0.9] tracking-[-0.055em] text-(--color-ink)">
+              What I&apos;ve built,
+              <br />
+              and what&apos;s in progress.
+            </h1>
+
+            <p className="mt-7 max-w-2xl font-sans text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
+              This isn&apos;t a long list. It&apos;s an honest record of what
+              I&apos;ve built, what I&apos;m building, and what I&apos;m still
+              figuring out.
+            </p>
+          </div>
+        </div>
+
+        {/* Projects */}
+        <div className="mt-20">
+          <div className="mb-5 flex items-center justify-between border-b border-(--color-border) pb-3">
+            <p className="font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-(--color-ink-faint)">
+              Selected projects
+            </p>
+
+            <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
+              {String(projects.length).padStart(2, "0")} entries
+            </p>
+          </div>
+
+          <ul>
+            {projects.map((project, index) => (
+              <li
+                key={project.slug}
+                className="border-b border-(--color-border)"
+              >
+                <Link
+                  href={`/work/${project.slug}`}
+                  className="group grid gap-8 py-8 transition-colors duration-200 sm:py-10 lg:grid-cols-[80px_1fr_auto] lg:items-center lg:gap-10"
+                >
+                  {/* Number */}
+                  <span className="font-display text-xl font-medium tracking-[-0.04em] text-(--color-primary)/60">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Project information */}
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h2 className="font-display text-2xl font-semibold tracking-[-0.035em] text-(--color-ink) transition-colors duration-200 group-hover:text-(--color-primary) sm:text-3xl">
+                        {project.title}
+                      </h2>
+
+                      <StatusBadge status={project.status} />
+                    </div>
+
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-(--color-ink-muted) sm:text-base">
+                      {project.summary}
+                    </p>
+
+                    <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-(--color-ink-faint)">
+                      {project.stack.join(" · ")}
+                    </p>
+                  </div>
+
+                  {/* Arrow */}
+                  <span
+                    aria-hidden="true"
+                    className="hidden text-2xl text-(--color-primary)/50 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-(--color-primary) lg:block"
+                  >
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }

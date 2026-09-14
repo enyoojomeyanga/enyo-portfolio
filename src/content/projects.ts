@@ -45,7 +45,7 @@ export const projects: Project[] = [
       "Got comfortable with Go's approach to strings, slices, and error handling, and with reading a spec closely enough to catch edge cases before they became bugs.",
     improve:
       "Would restructure the parsing logic into smaller, independently testable functions, and add unit tests rather than relying on manual verification.",
-    repoUrl: null,
+    repoUrl: "https://github.com/enyoojomeyanga/go-reloaded.git",
     thumbnail: "terminal",
   },
   {
