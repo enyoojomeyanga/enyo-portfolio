@@ -34,7 +34,7 @@ export default function ContactPage() {
 
   return (
     <main>
-      <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+      <section className="mx-auto max-w-[1180px] px-5 pt-20 pb-0 sm:px-8 lg:px-12">
         <div className="max-w-4xl">
           <div className="flex items-center gap-3">
             <span
@@ -42,7 +42,7 @@ export default function ContactPage() {
               className="h-1.5 w-1.5 rounded-full bg-(--color-primary)"
             />
             <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-(--color-ink-faint)">
-              Contact / 04
+              Contact 
             </p>
             <span
               aria-hidden="true"
@@ -53,11 +53,11 @@ export default function ContactPage() {
           <h1 className="mt-8 max-w-3xl font-display text-4xl font-medium leading-[1.04] tracking-[-0.045em] text-(--color-ink) sm:text-6xl lg:text-7xl">
             Have a problem
             <br />
-            worth solving?
+            you need to solve?
           </h1>
 
           <p className="mt-7 max-w-2xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
-            I&apos;m interested in technical problems, ambitious ideas, useful
+            I'm interested in technical problems, ambitious ideas, useful
             products, and opportunities where thoughtful engineering actually
             matters.
           </p>
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   aria-hidden="true"
                   className="font-mono text-lg text-(--color-ink-faint) transition-transform duration-200 group-hover:translate-x-1 group-hover:text-(--color-primary)"
                 >
-                  →
+                  ⤵
                 </span>
               </div>
             ))}
@@ -241,7 +241,7 @@ export default function ContactPage() {
             </div>
           </div>
           <p className="max-w-2xl font-display text-2xl font-medium leading-tight tracking-[-0.035em] text-(--color-ink) sm:text-3xl">
-            Bring the problem. We'll figure out the rest.
+            Bring the problem. I'll figure out the rest.
           </p>
         </div>
       </section>
