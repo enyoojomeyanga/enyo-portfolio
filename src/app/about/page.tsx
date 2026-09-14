@@ -16,7 +16,13 @@ export default function AboutPage() {
         Direction, not credentials
       </h1>
 
-      <div className="mt-10 space-y-6 text-(--color-ink-muted) leading-relaxed">
+      <div className="        rounded-[24px]
+        border border-(--color-border)
+        bg-(--color-surface-soft)
+        p-6
+        shadow-[0_8px_24px_rgba(11,16,32,0.04)]
+        sm:p-7 
+        mt-10 space-y-6 text-(--color-ink-muted) leading-relaxed">
         <p>
           I&apos;m {profile.fullName}, working toward becoming an{" "}
           {profile.role}. I&apos;m early in that journey — I don&apos;t
@@ -51,7 +57,7 @@ export default function AboutPage() {
           understand what went wrong, adapt, and try again. The{" "}
           <Link
             href="/work"
-            className="text-(--color-primary) underline underline-offset-4 hover:text-(--color-primary-hover)"
+            className="text-(--color-primary) hover:text-(--color-primary-hover)"
           >
             work
           </Link>{" "}

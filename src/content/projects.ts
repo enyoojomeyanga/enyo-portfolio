@@ -115,7 +115,7 @@ export const projects: Project[] = [
       "Learning how to keep a personal site honest and low-maintenance rather than over-designed.",
     improve:
       "Will keep refining structure and content as more real projects are ready to show.",
-    repoUrl: null,
+    repoUrl: "https://github.com/enyoojomeyanga/enyo-portfolio.git",
     thumbnail: "app-mockup",
   },
 ];
