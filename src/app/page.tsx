@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
@@ -93,12 +94,14 @@ export default function Home() {
                   shadow-[0_24px_70px_rgba(23,21,26,0.10)]
                 "
               >
-                <img
+                <Image
                   src="/images/Excel.jpg"
-                  alt="Enyo-ojo Meyanga"
-                  className="h-full w-full object-cover"
+                  alt="Portrait of Enyo-ojo Excel Meyanga"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 390px"
+                  className="object-cover object-center"
                 />
-
               </div>
 
               <div className="mt-3 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em] text-(--color-ink-faint)">
@@ -200,19 +203,19 @@ export default function Home() {
               <div className="mt-14 grid border-t border-white/20 sm:grid-cols-3">
                 {(["built", "building", "exploring"] as const).map((status) => {
                   const statusProjects = projects.filter(
-                    (project) => project.status === status
+                    (project) => project.status === status,
                   );
 
                   const items =
                     status === "exploring"
                       ? exploringTopics.map((topic) => ({
-                        key: topic.title,
-                        title: topic.title,
-                      }))
+                          key: topic.title,
+                          title: topic.title,
+                        }))
                       : statusProjects.map((project) => ({
-                        key: project.slug,
-                        title: project.title,
-                      }));
+                          key: project.slug,
+                          title: project.title,
+                        }));
 
                   return (
                     <div
@@ -299,7 +302,10 @@ export default function Home() {
 
           <ul className="mt-12 border-t border-(--color-border)">
             {projects.slice(0, 3).map((project, index) => (
-              <li key={project.slug} className="border-b border-(--color-border)">
+              <li
+                key={project.slug}
+                className="border-b border-(--color-border)"
+              >
                 <Link
                   href={`/work/${project.slug}`}
                   className="
@@ -384,19 +390,18 @@ export default function Home() {
           <SectionLabel variant="blue">Approach (HOW I THINK)</SectionLabel>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
-
             <div>
               <p className="max-w-3xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-white sm:text-4xl">
-                I care about the problem before I care about the technology
-                used to solve it.
+                I care about the problem before I care about the technology used
+                to solve it.
               </p>
             </div>
 
             <div>
               <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
-                I'm interested in understanding what is actually
-                difficult, finding where effort is being wasted, and building
-                something that makes the work easier.
+                I'm interested in understanding what is actually difficult,
+                finding where effort is being wasted, and building something
+                that makes the work easier.
               </p>
 
               <div className="mt-8 grid grid-cols-2 border-t border-white/20">

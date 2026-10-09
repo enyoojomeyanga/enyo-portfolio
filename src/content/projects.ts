@@ -4,13 +4,20 @@
 
 export type ProjectStatus = "built" | "building" | "exploring";
 
+export type Discipline =
+  | "engineering"
+  | "graphic-design"
+  | "local-visibility";
+
 // Controls which placeholder thumbnail is rendered on the homepage
 // "Selected work" list until real screenshots are supplied.
 export type ThumbnailVariant = "terminal" | "portrait" | "app-mockup";
 
+
 export type Project = {
   slug: string;
   title: string;
+  discipline: Discipline;
   status: ProjectStatus;
   stack: string[];
   summary: string;
@@ -29,6 +36,8 @@ export const projects: Project[] = [
     // TODO(confirm): update this entry as the project develops.
 {
   slug: "portfolio-website",
+
+  discipline: "engineering",
 
   title: "Portfolio Website",
 
@@ -49,7 +58,7 @@ export const projects: Project[] = [
     "Still building. I've been working through the layout, navigation, project structure, content, and visual system while learning what makes a portfolio feel personal instead of looking like another template.",
 
   result:
-    "A live portfolio that is still changing as I learn and build. Some work is finished, some is in progress, and I'm keeping that distinction visible.",
+    "A live portfolio that is still changing as I learn and build. Some work is finished, some is in progress, and I&apos;m keeping that distinction visible.",
 
   learned:
     "I'm learning that building a portfolio isn't just about making things look good. I have to be able to explain what I built, why I built it, and what I still need to improve.",
@@ -64,6 +73,7 @@ export const projects: Project[] = [
 
   {
     slug: "ascii-art-generator",
+    discipline: "engineering",
     title: "ASCII-Art Generator",
     status: "built",
     stack: ["Go"],
@@ -87,6 +97,7 @@ export const projects: Project[] = [
 
   {
     slug: "go-reloaded",
+    discipline: "engineering",
     title: "Go-Reloaded",
     status: "built",
     stack: ["Go"],
@@ -112,6 +123,7 @@ export const projects: Project[] = [
   // case study.
   {
     slug: "ai-study-companion",
+    discipline: "engineering",
     title: "AI Study Companion",
     status: "building",
     stack: ["Python", "AI", "In Progress"],

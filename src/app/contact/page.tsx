@@ -11,21 +11,21 @@ const REASONS = [
     label: "TECHNICAL PROBLEM",
     trigger: "You have a problem worth understanding.",
     action:
-      "Tell me what it is and let's understand it before deciding what to build.",
+      "Tell me what it is and let&apos;s understand it before deciding what to build.",
   },
   {
     number: "02",
     label: "WORK / COLLABORATION",
-    trigger: "You're interested in working with me.",
+    trigger: "You&apos;re interested in working with me.",
     action:
-      "Tell me what you're building, what you need, and where you think I can contribute.",
+      "Tell me what you&apos;re building, what you need, and where you think I can contribute.",
   },
   {
     number: "03",
     label: "OPPORTUNITY",
     trigger: "You have an opportunity or referral.",
     action:
-      "Have something interesting in mind? I'd genuinely like to hear about it.",
+      "Have something interesting in mind? I&apos;d genuinely like to hear about it.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function ContactPage() {
           </h1>
 
           <p className="mt-7 max-w-2xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
-            I'm interested in technical problems, ambitious ideas, useful
+            I&apos;m interested in technical problems, ambitious ideas, useful
             products, and opportunities where thoughtful engineering actually
             matters.
           </p>
@@ -241,7 +241,7 @@ export default function ContactPage() {
             </div>
           </div>
           <p className="max-w-2xl font-display text-2xl font-medium leading-tight tracking-[-0.035em] text-(--color-ink) sm:text-3xl">
-            Bring the problem. I'll figure out the rest.
+            Bring the problem. I&apos;ll figure out the rest.
           </p>
         </div>
       </section>
