@@ -20,7 +20,13 @@ export async function generateMetadata({
   return { title: `${project.title} — ${profile.fullName}` };
 }
 
-const SECTIONS: { key: keyof typeof projects[number]; label: string }[] = [
+const DISCIPLINE_LABELS = {
+  engineering: "Engineering & AI",
+  "graphic-design": "Graphic Design",
+  "local-visibility": "Local Business Visibility",
+} as const;
+
+const SECTIONS: { key: keyof (typeof projects)[number]; label: string }[] = [
   { key: "problem", label: "Problem" },
   { key: "approach", label: "Approach" },
   { key: "implementation", label: "Implementation" },
@@ -59,30 +65,31 @@ export default async function ProjectPage({
         <span aria-hidden="true" className="text-base leading-none">
           ←
         </span>
-        <span>Return</span>
+        <span>Return to work</span>
       </Link>
 
-      <div className="mt-8 ">
-        <div>
-          <p className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-(--color-primary)">
-            Project / {String(projects.findIndex((p) => p.slug === project.slug) + 1).padStart(2, "0")}
-          </p>
-          <br/>
+      <div className="mt-8">
+        <p className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-(--color-primary)">
+          Project /{" "}
+          {String(
+            projects.findIndex((p) => p.slug === project.slug) + 1,
+          ).padStart(2, "0")}
+        </p>
+
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <span className="inline-flex rounded-full border border-(--color-primary)/25 bg-(--color-primary)/[0.06] px-3 py-1.5 font-mono text-[9px] font-medium uppercase tracking-[0.1em] text-(--color-primary)">
+            {DISCIPLINE_LABELS[project.discipline]}
+          </span>
+          <StatusBadge status={project.status} />
         </div>
 
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-display text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.88] tracking-[-0.055em] text-(--color-ink)">
-              {project.title}
-            </h1>
+        <h1 className="mt-6 max-w-5xl font-display text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.88] tracking-[-0.055em] text-(--color-ink)">
+          {project.title}
+        </h1>
 
-            <StatusBadge status={project.status} />
-          </div>
-
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
-            {project.summary}
-          </p>
-        </div>
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
+          {project.summary}
+        </p>
       </div>
 
       <div className="mt-20 grid gap-5 sm:grid-cols-2">
@@ -90,13 +97,13 @@ export default async function ProjectPage({
           <div
             key={key}
             className="
-        rounded-[24px]
-        border border-(--color-border)
-        bg-(--color-surface-soft)
-        p-6
-        shadow-[0_8px_24px_rgba(11,16,32,0.04)]
-        sm:p-7
-      "
+              rounded-[24px]
+              border border-(--color-border)
+              bg-(--color-surface-soft)
+              p-6
+              shadow-[0_8px_24px_rgba(11,16,32,0.04)]
+              sm:p-7
+            "
           >
             <div className="flex items-center justify-between gap-4">
               <span className="font-display text-sm font-medium tracking-[-0.03em] text-(--color-primary)/60">
@@ -120,7 +127,8 @@ export default async function ProjectPage({
           href={project.repoUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-16 inline-flex items-center gap-3 border-b border-(--color-primary)/30 pb-2 font-mono text-xs uppercase tracking-[0.16em] text-(--color-primary) transition-colors hover:border-(--color-primary) hover:text-(--color-primary-hover)"        >
+          className="mt-16 inline-flex items-center gap-3 border-b border-(--color-primary)/30 pb-2 font-mono text-xs uppercase tracking-[0.16em] text-(--color-primary) transition-colors hover:border-(--color-primary) hover:text-(--color-primary-hover)"
+        >
           View repository →
         </a>
       )}

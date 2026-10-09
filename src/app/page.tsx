@@ -399,7 +399,7 @@ export default function Home() {
 
             <div>
               <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
-                I'm interested in understanding what is actually difficult,
+                I&apos;m interested in understanding what is actually difficult,
                 finding where effort is being wasted, and building something
                 that makes the work easier.
               </p>
