@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
-import {
-  Space_Grotesk,
-  IBM_Plex_Sans,
-  IBM_Plex_Mono,
-} from "next/font/google";
+import { Newsreader, Manrope, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
+import "./home-premium.css";
 
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { profile } from "@/content/profile";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// All three families are loaded through Next.js and served locally by the app.
+// Newsreader and Manrope use their variable-font axes.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -42,20 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
-
-        className={`
-          ${spaceGrotesk.variable}
-          ${plexSans.variable}
-          ${plexMono.variable}
-          antialiased
-        `}
+        className={`${newsreader.variable} ${manrope.variable} ${plexMono.variable} antialiased`}
       >
         <Nav />
-
-        <main className="min-h-screen">
-          {children}
-        </main>
-
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>

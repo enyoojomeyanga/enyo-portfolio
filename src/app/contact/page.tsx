@@ -7,6 +7,12 @@ export const metadata: Metadata = {
 
 const REASONS = [
   {
+    number: "00",
+    label: "DESIGN / BUSINESS VISIBILITY",
+    trigger: "You need design support or help being found online.",
+    action: "Share your business, what you need, and the outcome you want to achieve.",
+  },
+  {
     number: "01",
     label: "TECHNICAL PROBLEM",
     trigger: "You have a problem worth understanding.",

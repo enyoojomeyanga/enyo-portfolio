@@ -1,484 +1,164 @@
 import Link from "next/link";
 import Image from "next/image";
-
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { exploringTopics } from "@/content/exploring";
+import { HomeProjects } from "@/components/home/home-projects";
+import { disciplines } from "@/content/disciplines";
+import { siteContent } from "@/content/site-content";
 
-import { StatusBadge } from "@/components/status-badge";
-import { SectionLabel } from "@/components/section-label";
-import { ProjectThumbnail } from "@/components/project-thumbnail";
+function ServiceIcon({ type }: { type: "cpu" | "palette" | "pin" }) {
+  if (type === "cpu") return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="5.5" y="5.5" width="13" height="13" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/>
+      <path d="M9 2v3.5M15 2v3.5M9 18.5V22M15 18.5V22M2 9h3.5M2 15h3.5M18.5 9H22M18.5 15H22"/>
+    </svg>
+  );
+  if (type === "palette") return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m4 20 4.5-1 10-10a2.6 2.6 0 0 0-3.7-3.7L4.8 15.3 4 20Z"/><path d="m13 7 4 4"/><path d="M5 5c1.2-1.8 3-2.5 5.2-2.2M19 16a4.5 4.5 0 0 1 1.5 2.8"/>
+    </svg>
+  );
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 10c0 5.2-8 12-8 12S4 15.2 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+  );
+}
+
+function ApproachIcon({ number }: { number: number }) {
+  if (number === 1) return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18h6m-5 3h4m-6-6a7 7 0 1 1 8 0c-.9.7-1 1.5-1 2H9c0-.5-.1-1.3-1-2Z"/></svg>;
+  if (number === 2) return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5ZM3 7v10l9 5 9-5V7M12 12v10"/></svg>;
+  if (number === 3) return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 4l-4 16"/></svg>;
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 20V12h4v8H4Zm6 0V7h4v13h-4Zm6 0V3h4v17h-4Z"/></svg>;
+}
+
+const approach = [
+  { step: "01", title: "Understand", description: "Start with the real problem." },
+  { step: "02", title: "Design", description: "Find a clear, useful solution." },
+  { step: "03", title: "Build", description: "Turn ideas into working tools." },
+  { step: "04", title: "Improve", description: "Test, learn, and iterate." },
+];
 
 export default function Home() {
+  const built = projects.filter((project) => project.status === "built");
+  const building = projects.filter((project) => project.status === "building");
+  const nameParts = profile.fullName.trim().split(/\s+/);
+  const leadName = nameParts[0] ?? profile.fullName;
+  const remainingName = nameParts.slice(1).join(" ");
+  const projectCount = projects.length;
+  const disciplineCount = disciplines.length;
+  const exploringCount = exploringTopics.length;
   return (
-    <>
-      {/* ==================================================
-          HERO
-      ================================================== */}
-      <section className="hero-section relative overflow-hidden">
-        <div className="signal-field" aria-hidden="true" />
-
-        <div className="relative mx-auto max-w-[1280px] px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-24 lg:px-12 lg:pb-32 lg:pt-28">
-          <div className="grid items-end gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-            <div>
-              <div className="reveal flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-1.5 w-1.5 rounded-full bg-(--color-primary)"
-                />
-
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-(--color-ink-muted)">
-                  {profile.role}
-                </p>
-
-                <span
-                  aria-hidden="true"
-                  className="h-px w-12 bg-(--color-border-strong)"
-                />
-              </div>
-
-              <div className="mt-9">
-                <h1 className="reveal max-w-5xl font-display text-[clamp(3.8rem,9vw,8rem)] font-semibold leading-[0.82] tracking-[-0.065em]">
-                  <span className="text-(--color-primary)">Enyo-ojo</span>{" "}
-                  <span className="text-(--color-ink)">Excel</span>{" "}
-                  <span className="text-(--color-primary)">Meyanga</span>
-                </h1>
-
-                <p className="reveal reveal-delay mt-8 max-w-2xl font-sans text-lg leading-relaxed text-(--color-ink-muted) sm:text-xl lg:text-2xl">
-                  {profile.tagline}
-                </p>
-              </div>
-
-              <div className="reveal reveal-delay-2 mt-10 flex flex-wrap gap-3">
-                <Link
-                  href="/work"
-                  className="
-                    primary-button
-                    inline-flex items-center gap-3
-                    rounded-xl px-5
-                    font-mono text-xs uppercase
-                    tracking-[0.12em]
-                  "
-                >
-                  View my work
-                  <span aria-hidden="true">↗</span>
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="
-                    secondary-button
-                    inline-flex items-center
-                    rounded-xl px-5
-                    font-mono text-xs uppercase
-                    tracking-[0.12em]
-                  "
-                >
-                  Get in touch
-                </Link>
-              </div>
-            </div>
-
-            {/* Image / artifact placeholder */}
-            <div className="relative mx-auto w-full max-w-[390px] lg:ml-auto">
-              <div className="absolute -right-3 -top-3 font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                IMAGE / 001
-              </div>
-
-              <div
-                className="
-                  relative aspect-[4/5]
-                  overflow-hidden rounded-[28px]
-                  border border-(--color-border)
-                  bg-(--color-surface-soft)
-                  shadow-[0_24px_70px_rgba(23,21,26,0.10)]
-                "
-              >
-                <Image
-                  src="/images/Excel.jpg"
-                  alt="Portrait of Enyo-ojo Excel Meyanga"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 390px"
-                  className="object-cover object-center"
-                />
-              </div>
-
-              <div className="mt-3 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em] text-(--color-ink-faint)">
-                <span>Current state</span>
-                <span>01 / 05</span>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-(--color-border) bg-(--color-border)">
-                <div className="bg-(--color-bg) px-3 py-3">
-                  <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                    Current focus
-                  </p>
-                  <p className="mt-1 font-mono text-[9px] font-medium uppercase tracking-[0.08em] text-(--color-primary)">
-                    AI Systems
-                  </p>
-                </div>
-
-                <div className="bg-(--color-bg) px-3 py-3">
-                  <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-                    Primary stack
-                  </p>
-                  <p className="mt-1 font-mono text-[9px] font-medium uppercase tracking-[0.08em] text-(--color-primary)">
-                    Python
-                  </p>
-                </div>
-              </div>
-            </div>
+    <div className="enyo-home">
+      <div className="enyo-home-ambient" aria-hidden="true" />
+      <section className="enyo-hero" aria-labelledby="home-heading">
+        <div className="enyo-hero-copy">
+          <p className="enyo-eyebrow enyo-hero-eyebrow"><span/> AI Engineer <b>·</b> Designer <b>·</b> Visibility Partner</p>
+          <h1 id="home-heading" className="enyo-hero-heading enyo-hero-name-heading">
+            <span>{leadName}</span>{remainingName && <em>{remainingName}</em>}
+          </h1>
+          {siteContent.heroIntro.trim() && (
+            <p className="enyo-hero-intro">{siteContent.heroIntro}</p>
+          )}
+          <div className="enyo-hero-actions">
+            <Link className="enyo-home-primary" href="/work">View my work <span aria-hidden="true">→</span></Link>
+            <Link className="enyo-home-secondary" href="/contact">Let&apos;s talk <span aria-hidden="true">↗</span></Link>
+          </div>
+          <div className="enyo-hero-stat-row" aria-label="Portfolio overview">
+            <div><strong>{String(projectCount).padStart(2, "0")}</strong><span>Recorded projects</span></div>
+            <div><strong>{String(disciplineCount).padStart(2, "0")}</strong><span>Areas of work</span></div>
+            <div><strong className="enyo-stat-focus">{profile.role}</strong><span>Primary focus</span></div>
+            <div><strong>{String(exploringCount).padStart(2, "0")}</strong><span>Topics exploring</span></div>
+          </div>
+        </div>
+        <div className="enyo-hero-visual">
+          <div className="enyo-hero-halo" aria-hidden="true" />
+          <div className="enyo-skyline" aria-hidden="true">
+            <svg viewBox="0 0 650 270" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="cityBlue" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#4D8CFF" stopOpacity=".27"/><stop offset="1" stopColor="#0038FF" stopOpacity=".44"/></linearGradient></defs><g fill="url(#cityBlue)" stroke="#2B70FF" strokeOpacity=".15"><path d="M0 168h26v102H0zM23 135h24v135H23zM44 176h25v94H44zM66 109h43v161H66zM112 155h24v115h-24zM138 95h36v175h-36zM172 178h19v92h-19zM193 140h39v130h-39zM234 174h20v96h-20zM258 117h35v153h-35zM300 187h23v83h-23zM326 140h41v130h-41zM369 167h26v103h-26zM399 94h38v176h-38zM441 167h31v103h-31zM475 127h40v143h-40zM518 179h21v91h-21zM541 113h46v157h-46zM591 162h28v108h-28zM621 149h29v121h-29z"/><path d="M152 95V55M410 94V20M562 113V67" fill="none" strokeWidth="2"/></g><g stroke="#fff" strokeOpacity=".28" strokeWidth="1"><path d="M76 136h26m-26 15h26m-26 16h26m-26 16h26M145 124h22m-22 16h22m-22 16h22M401 117h28m-28 20h28m-28 20h28M551 143h28m-28 19h28"/></g></svg>
+          </div>
+          <div className="enyo-portrait-frame">
+            <Image
+              src="/images/Excel.jpg"
+              alt="Portrait of Enyo-ojo Excel Meyanga"
+              fill
+              priority
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 45vw, 550px"
+              className="enyo-portrait-image"
+            />
+          </div>
+          <div className="enyo-hero-idea-card" aria-label="Ideas, design, build, impact">
+            <span className="enyo-idea-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="18" width="4" height="9" rx="1"/><rect x="14" y="12" width="4" height="15" rx="1"/><rect x="23" y="5" width="4" height="22" rx="1"/></svg></span>
+            <div className="enyo-idea-steps"><span>Ideas</span><span>Design</span><span>Build</span><span>Impact</span></div>
           </div>
         </div>
       </section>
 
-      {/* ==================================================
-          CURRENT STATE
-      ================================================== */}
-      <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
-        <div className="mx-auto max-w-[1280px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <SectionLabel variant="blue">Current state</SectionLabel>
-
-          <div className="mt-10 grid gap-12 lg:grid-cols-[0.95fr_1.35fr] lg:gap-16">
-            <div>
-              <p className="mt-6 max-w-md font-display text-4xl font-medium leading-[0.98] tracking-[-0.045em] text-white sm:text-5xl">
-                Building toward something bigger.
-              </p>
-
-              <p className="mt-5 max-w-sm font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-white/50">
-                Learning by building, breaking, testing, and rebuilding.
-              </p>
+      <section className="enyo-services enyo-home-width" aria-label="What I do">
+        {disciplines.map((service) => (
+          <Link key={service.slug} href={`/work?discipline=${service.slug}`} className="enyo-service-card">
+            <div className="enyo-service-top">
+              <div className={`enyo-service-icon enyo-service-icon-${service.color}`}><ServiceIcon type={service.icon}/></div>
+              <span className="enyo-arrow" aria-hidden="true">→</span>
             </div>
+            <h2>{service.name}</h2>
+            <p>{service.description}</p>
+          </Link>
+        ))}
+      </section>
 
-            <div>
-              <div>
-                <div className="flex items-center justify-between border-b border-white/20 pb-3">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/50">
-                    System status
-                  </span>
+      <section className="enyo-selected-work enyo-home-width" id="selected-work" aria-label="Selected work">
+        <HomeProjects projects={[
+          ...projects.filter((project) => project.slug === "go-reloaded"),
+          ...projects.filter((project) => project.slug === "portfolio-website"),
+          ...projects.filter((project) => project.slug === "ai-study-companion"),
+          ...projects.filter((project) => project.slug === "ascii-art-generator"),
+          ...projects.filter((project) => !["go-reloaded", "portfolio-website", "ai-study-companion", "ascii-art-generator"].includes(project.slug)),
+        ]}/>
+      </section>
 
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
-                    Live / 2026
-                  </span>
-                </div>
-
-                <div className="mt-5 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-3">
-                  <div className="bg-white/[0.06] px-4 py-4">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-white/45">
-                      Current focus
-                    </p>
-
-                    <p className="mt-2 font-display text-base font-medium tracking-[-0.02em] text-white">
-                      AI Systems
-                    </p>
-                  </div>
-
-                  <div className="bg-white/[0.06] px-4 py-4">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-white/45">
-                      Primary stack
-                    </p>
-
-                    <p className="mt-2 font-display text-base font-medium tracking-[-0.02em] text-white">
-                      Python
-                    </p>
-                  </div>
-
-                  <div className="bg-white/[0.06] px-4 py-4">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-white/45">
-                      Status
-                    </p>
-
-                    <p className="mt-2 font-display text-base font-medium tracking-[-0.02em] text-white">
-                      Building
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-                  {profile.currentFocus}
-                </p>
-              </div>
-
-              <div className="mt-14 grid border-t border-white/20 sm:grid-cols-3">
-                {(["built", "building", "exploring"] as const).map((status) => {
-                  const statusProjects = projects.filter(
-                    (project) => project.status === status,
-                  );
-
-                  const items =
-                    status === "exploring"
-                      ? exploringTopics.map((topic) => ({
-                          key: topic.title,
-                          title: topic.title,
-                        }))
-                      : statusProjects.map((project) => ({
-                          key: project.slug,
-                          title: project.title,
-                        }));
-
-                  return (
-                    <div
-                      key={status}
-                      className="
-                        border-b border-(--color-border)
-                        py-6
-                        sm:border-b-0 sm:border-r sm:px-6
-                        sm:first:pl-0 sm:last:border-r-0
-                      "
-                    >
-                      <StatusBadge status={status} />
-
-                      <ul className="mt-5 space-y-3">
-                        {items.length > 0 ? (
-                          items.map((item) => (
-                            <li key={item.key}>
-                              <div className="flex items-start gap-2">
-                                <span
-                                  className="pt-0.5 font-mono text-xs text-white/50"
-                                  aria-hidden="true"
-                                >
-                                  •
-                                </span>
-
-                                <span
-                                  className="
-                                    font-display text-sm font-medium leading-snug
-                                    text-white
-                                  "
-                                >
-                                  {item.title}
-                                </span>
-                              </div>
-                            </li>
-                          ))
-                        ) : (
-                          <li className="font-mono text-xs text-(--color-ink-faint)">
-                            Nothing here yet.
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+      <section className="enyo-current-section enyo-home-width" aria-labelledby="current-heading">
+        <div className="enyo-current-heading">
+          <div>
+            <div className="enyo-eyebrow"><span/> Current state</div>
+            <h2 className="enyo-section-title" id="current-heading">What I&apos;m working on<br/>right now.</h2>
+          </div>
+          <Link className="enyo-view-work" href="/work">View all work <span aria-hidden="true">→</span></Link>
+        </div>
+        <div className="enyo-current-grid">
+          <div className="enyo-current-card enyo-current-card-built">
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✓</span><h3>Built <span className="enyo-current-count">{String(built.length).padStart(2, "0")}</span></h3></div>
+            <ul>{built.length ? built.map((project) => <li key={project.slug}><span aria-hidden="true">→</span>{project.title}</li>) : <li>No completed projects listed yet.</li>}</ul>
+          </div>
+          <div className="enyo-current-card enyo-current-card-building">
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✦</span><h3>Building <span className="enyo-current-count">{String(building.length).padStart(2, "0")}</span></h3></div>
+            <ul>{building.length ? building.map((project) => <li key={project.slug}><span aria-hidden="true">→</span>{project.title}</li>) : <li>No active projects listed yet.</li>}</ul>
+          </div>
+          <div className="enyo-current-card enyo-current-card-exploring">
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">◎</span><h3>Exploring <span className="enyo-current-count">{String(exploringCount).padStart(2, "0")}</span></h3></div>
+            <ul>{exploringTopics.map((topic) => <li key={topic.title}><span aria-hidden="true">→</span>{topic.title}</li>)}</ul>
           </div>
         </div>
       </section>
 
-      {/* ==================================================
-          SELECTED WORK
-      ================================================== */}
-      <section className="relative overflow-hidden border-b border-(--color-border)">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(124,58,237,0.10),transparent_26rem),radial-gradient(circle_at_90%_75%,rgba(255,79,100,0.07),transparent_25rem)]"
-          aria-hidden="true"
-        />
-
-        <div className="relative mx-auto max-w-[1280px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <SectionLabel>Selected work</SectionLabel>
-
-              <p className="mt-5 max-w-2xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-(--color-ink) sm:text-4xl">
-                A few things I&apos;ve built, explored, and learned from.
-              </p>
-            </div>
-
-            <Link
-              href="/work"
-              className="
-                shrink-0 font-mono text-[10px]
-                uppercase tracking-[0.16em]
-                text-(--color-primary)
-                transition-colors duration-180
-                hover:text-(--color-primary-hover)
-              "
-            >
-              View all work →
-            </Link>
+      <section className="enyo-approach-section" aria-labelledby="approach-heading">
+        <div className="enyo-home-width enyo-approach-layout">
+          <div className="enyo-approach-heading">
+            <div className="enyo-eyebrow"><span/> My approach</div>
+            <h2 className="enyo-section-title" id="approach-heading">From curiosity<br/>to real impact.</h2>
+            <p>I combine engineering, design, and real-world thinking to create solutions that are useful, accessible, and people-focused.</p>
           </div>
-
-          <ul className="mt-12 border-t border-(--color-border)">
-            {projects.slice(0, 3).map((project, index) => (
-              <li
-                key={project.slug}
-                className="border-b border-(--color-border)"
-              >
-                <Link
-                  href={`/work/${project.slug}`}
-                  className="
-                    project-row group
-                    flex flex-col gap-5
-                    py-8
-                    sm:grid sm:grid-cols-[48px_160px_minmax(0,1fr)_auto]
-                    sm:items-center sm:gap-7
-                  "
-                >
-                  <span className="font-display text-xs text-(--color-primary)">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <ProjectThumbnail variant={project.thumbnail} />
-
-                  <div className="min-w-0">
-                    <h3
-                      className="
-                        font-display text-[1.35rem] font-semibold
-                        tracking-[-0.025em]
-                        text-(--color-ink)
-                        transition-colors duration-180
-                        group-hover:text-(--color-primary)
-                      "
-                    >
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-2 max-w-xl text-sm leading-6 text-(--color-ink-muted)">
-                      {project.summary}
-                    </p>
-
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="
-                            rounded-full
-                            border border-(--color-border)
-                            bg-white/50
-                            px-2.5 py-1
-                            font-mono text-[10px]
-                            text-(--color-ink-muted)
-                          "
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
-                    <StatusBadge status={project.status} />
-
-                    <span
-                      className="
-                        project-arrow
-                        font-mono text-sm
-                        text-(--color-ink-faint)
-                        transition-all duration-200
-                        group-hover:translate-x-1
-                        group-hover:text-(--color-primary)
-                      "
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </div>
-                </Link>
-              </li>
+          <div className="enyo-approach-grid">
+            {approach.map((item, index) => (
+              <div className="enyo-approach-card" key={item.step}>
+                <div className="enyo-approach-top"><span>{item.step}</span><ApproachIcon number={index+1}/></div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ==================================================
-          APPROACH
-      ================================================== */}
-      <section className="surface-section border-b border-(--color-border) bg-(--color-surface)">
-        <div className="mx-auto max-w-[1280px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <SectionLabel variant="blue">Approach (HOW I THINK)</SectionLabel>
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
-            <div>
-              <p className="max-w-3xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-white sm:text-4xl">
-                I care about the problem before I care about the technology used
-                to solve it.
-              </p>
-            </div>
-
-            <div>
-              <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
-                I&apos;m interested in understanding what is actually difficult,
-                finding where effort is being wasted, and building something
-                that makes the work easier.
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 border-t border-white/20">
-                <div className="border-b border-r border-white/20 py-5 pr-5">
-                  <span className="font-display text-lg font-medium text-white/70">
-                    01
-                  </span>
-
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
-                    Question
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    Start with the problem, not the tool.
-                  </p>
-                </div>
-
-                <div className="border-b border-white/20 py-5 pl-5">
-                  <span className="font-display text-lg font-medium text-white/70">
-                    02
-                  </span>
-
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
-                    Understand
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    Find what is actually difficult.
-                  </p>
-                </div>
-
-                <div className="border-r border-white/20 py-5 pr-5">
-                  <span className="font-display text-lg font-medium text-white/70">
-                    03
-                  </span>
-
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
-                    Build
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    Turn the idea into something usable.
-                  </p>
-                </div>
-
-                <div className="py-5 pl-5">
-                  <span className="font-display text-lg font-medium text-white/70">
-                    04
-                  </span>
-
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
-                    Iterate
-                  </p>
-
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    Learn from what breaks and improve it.
-                  </p>
-                </div>
-              </div>
-
-              <Link
-                href="/about"
-                className="
-                  mt-7 inline-flex
-                  font-mono text-[10px] uppercase
-                  tracking-[0.16em]
-                  text-white/70
-                  transition-colors duration-200
-                  hover:text-(--color-section)
-                "
-              >
-                More on how I think →
-              </Link>
-            </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
