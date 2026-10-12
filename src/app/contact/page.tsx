@@ -158,7 +158,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--color-primary) hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--enyo-button) hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--color-primary) hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--enyo-button) hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -194,7 +194,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--color-primary) hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--enyo-button) hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--color-primary) hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-muted) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--enyo-button) hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -233,7 +233,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Facebook"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-faint) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--color-primary) hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) text-(--color-ink-faint) transition-all duration-200 hover:border-(--color-primary)/40 hover:bg-(--enyo-button) hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"

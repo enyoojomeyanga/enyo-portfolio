@@ -13,7 +13,7 @@ export function Footer() {
               Still building. Still learning. Still moving forward.
             </p>
 
-            <p className="mt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
               
               AI systems / LLMs / computer vision
               <br />
@@ -25,7 +25,7 @@ export function Footer() {
             <Link
               href="/contact"
               className="
-                group inline-flex items-center gap-2
+                group min-h-11 inline-flex items-center gap-2
                 font-mono text-xs uppercase
                 tracking-[0.16em] text-(--color-primary)
                 transition-colors duration-180
@@ -38,7 +38,7 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-(--color-ink-faint)">
+            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-(--color-ink-faint)">
               {profile.fullName}
               <br/>
               AI Engineer

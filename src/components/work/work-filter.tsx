@@ -52,8 +52,8 @@ export function WorkFilter({
               aria-pressed={active}
               className={`min-h-11 rounded-full border px-4 py-2 font-sans text-xs font-semibold transition-colors ${
                 active
-                  ? "border-(--color-primary) bg-(--color-primary) text-white"
-                  : "border-(--color-border) bg-white/40 text-(--color-ink-muted) hover:border-(--color-primary) hover:text-(--color-primary)"
+                  ? "border-(--enyo-button) bg-(--enyo-button) text-white"
+                  : "border-(--color-border) bg-(--enyo-card) text-(--color-ink-muted) hover:border-(--color-primary) hover:text-(--color-primary)"
               }`}
             >
               {filter.label}
@@ -89,7 +89,7 @@ export function WorkFilter({
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-(--color-border) bg-white/50 px-2.5 py-1 font-mono text-[11px] text-(--color-ink-muted)"
+                        className="rounded-full border border-(--color-border) bg-(--enyo-subtle) px-2.5 py-1 font-mono text-[11px] text-(--color-ink-muted)"
                       >
                         {tech}
                       </span>

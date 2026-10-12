@@ -47,7 +47,6 @@ export default function Home() {
   const leadName = nameParts[0] ?? profile.fullName;
   const remainingName = nameParts.slice(1).join(" ");
   const projectCount = projects.length;
-  const disciplineCount = disciplines.length;
   const exploringCount = exploringTopics.length;
   return (
     <div className="enyo-home">
@@ -67,7 +66,6 @@ export default function Home() {
           </div>
           <div className="enyo-hero-stat-row" aria-label="Portfolio overview">
             <div><strong>{String(projectCount).padStart(2, "0")}</strong><span>Recorded projects</span></div>
-            <div><strong>{String(disciplineCount).padStart(2, "0")}</strong><span>Areas of work</span></div>
             <div><strong className="enyo-stat-focus">{profile.role}</strong><span>Primary focus</span></div>
             <div><strong>{String(exploringCount).padStart(2, "0")}</strong><span>Topics exploring</span></div>
           </div>
@@ -83,28 +81,32 @@ export default function Home() {
               alt="Portrait of Enyo-ojo Excel Meyanga"
               fill
               priority
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 45vw, 550px"
+              sizes="(max-width: 760px) 85vw, (max-width: 1200px) 43vw, 550px"
               className="enyo-portrait-image"
             />
           </div>
           <div className="enyo-hero-idea-card" aria-label="Ideas, design, build, impact">
             <span className="enyo-idea-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="18" width="4" height="9" rx="1"/><rect x="14" y="12" width="4" height="15" rx="1"/><rect x="23" y="5" width="4" height="22" rx="1"/></svg></span>
-            <div className="enyo-idea-steps"><span>Ideas</span><span>Design</span><span>Build</span><span>Impact</span></div>
+            <div className="enyo-idea-stages"><span>Ideas</span><span>Design</span><span>Build</span><span>Impact</span></div>
           </div>
         </div>
       </section>
 
-      <section className="enyo-services enyo-home-width" aria-label="What I do">
+      <section className="enyo-services-section enyo-home-width" aria-labelledby="services-heading">
+        <div className="enyo-eyebrow"><span /> Areas of work</div>
+        <h2 className="enyo-section-title" id="services-heading">Different disciplines. Practical solutions.</h2>
+        <div className="enyo-services">
         {disciplines.map((service) => (
           <Link key={service.slug} href={`/work?discipline=${service.slug}`} className="enyo-service-card">
             <div className="enyo-service-top">
               <div className={`enyo-service-icon enyo-service-icon-${service.color}`}><ServiceIcon type={service.icon}/></div>
-              <span className="enyo-arrow" aria-hidden="true">→</span>
+              <span className="enyo-service-explore">Explore <span className="enyo-arrow" aria-hidden="true">→</span></span>
             </div>
-            <h2>{service.name}</h2>
+            <h3>{service.name}</h3>
             <p>{service.description}</p>
           </Link>
         ))}
+        </div>
       </section>
 
       <section className="enyo-selected-work enyo-home-width" id="selected-work" aria-label="Selected work">
@@ -127,15 +129,15 @@ export default function Home() {
         </div>
         <div className="enyo-current-grid">
           <div className="enyo-current-card enyo-current-card-built">
-            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✓</span><h3>Built <span className="enyo-current-count">{String(built.length).padStart(2, "0")}</span></h3></div>
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✓</span><h3>Built <span className="enyo-current-count">{built.length} {built.length === 1 ? "project" : "projects"}</span></h3></div>
             <ul>{built.length ? built.map((project) => <li key={project.slug}><span aria-hidden="true">→</span>{project.title}</li>) : <li>No completed projects listed yet.</li>}</ul>
           </div>
           <div className="enyo-current-card enyo-current-card-building">
-            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✦</span><h3>Building <span className="enyo-current-count">{String(building.length).padStart(2, "0")}</span></h3></div>
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">✦</span><h3>Building <span className="enyo-current-count">{building.length} {building.length === 1 ? "project" : "projects"}</span></h3></div>
             <ul>{building.length ? building.map((project) => <li key={project.slug}><span aria-hidden="true">→</span>{project.title}</li>) : <li>No active projects listed yet.</li>}</ul>
           </div>
           <div className="enyo-current-card enyo-current-card-exploring">
-            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">◎</span><h3>Exploring <span className="enyo-current-count">{String(exploringCount).padStart(2, "0")}</span></h3></div>
+            <div className="enyo-current-card-heading"><span className="enyo-current-card-icon" aria-hidden="true">◎</span><h3>Exploring <span className="enyo-current-count">{exploringCount} {exploringCount === 1 ? "topic" : "topics"}</span></h3></div>
             <ul>{exploringTopics.map((topic) => <li key={topic.title}><span aria-hidden="true">→</span>{topic.title}</li>)}</ul>
           </div>
         </div>

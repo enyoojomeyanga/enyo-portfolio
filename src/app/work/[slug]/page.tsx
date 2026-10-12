@@ -58,7 +58,7 @@ export default async function ProjectPage({
           text-(--color-ink-muted)
           transition-all duration-200
           hover:border-(--color-primary)
-          hover:bg-(--color-primary)
+          hover:bg-(--enyo-button)
           hover:text-white
         "
       >

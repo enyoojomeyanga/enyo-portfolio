@@ -8,12 +8,19 @@ export type ImageAsset = {
   objectPosition?: string;
 };
 
+const mediaContent = content as typeof content & { brandLogoDark?: ImageAsset | null };
+
 export const siteContent: {
   heroIntro: string;
   brandLogo: ImageAsset | null;
+  brandLogoDark: ImageAsset | null;
   projectImages: Record<string, ImageAsset | undefined>;
 } = {
   heroIntro: content.heroIntro,
   brandLogo: content.brandLogo as ImageAsset | null,
+  brandLogoDark: mediaContent.brandLogoDark ?? {
+    src: "/brand/emeyanga-symbol-reversed.svg",
+    alt: "EMEYANGA reversed brand symbol",
+  },
   projectImages: content.projectImages as Record<string, ImageAsset | undefined>,
 };
