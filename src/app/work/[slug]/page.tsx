@@ -2,136 +2,87 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { profile } from "@/content/profile";
-import { projects } from "@/content/projects";
+import { getProjects } from "@/content/project-source";
+import { disciplines } from "@/content/disciplines";
 import { StatusBadge } from "@/components/status-badge";
+import { CaseNavigation } from "@/components/work/case-navigation";
+import { ProjectGallery } from "@/components/work/project-gallery";
+import { InteractiveDemo } from "@/components/work/interactive-demo";
+import { WorkMedia, workImage } from "@/components/work/work-media";
+import styles from "../work.module.css";
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+export async function generateStaticParams() {
+  return (await getProjects()).map((project) => ({ slug: project.slug }));
 }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = (await getProjects()).find((item) => item.slug === slug);
   if (!project) return {};
-  return { title: `${project.title} — ${profile.fullName}` };
+  return { title: `${project.title} — ${profile.fullName}`, description: project.summary };
 }
-
-const DISCIPLINE_LABELS = {
-  engineering: "Engineering & AI",
-  "graphic-design": "Graphic Design",
-  "local-visibility": "Local Business Visibility",
-} as const;
-
-const SECTIONS: { key: keyof (typeof projects)[number]; label: string }[] = [
-  { key: "problem", label: "Problem" },
-  { key: "approach", label: "Approach" },
-  { key: "implementation", label: "Implementation" },
-  { key: "result", label: "Result" },
+const sectionDefinitions = [
+  { key: "problem", label: "The problem" },
+  { key: "approach", label: "The decisions" },
+  { key: "implementation", label: "What I built" },
+  { key: "result", label: "The current result" },
   { key: "learned", label: "What I learned" },
-  { key: "improve", label: "What I'd improve" },
-];
+  { key: "improve", label: "What comes next" },
+] as const;
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const projects = await getProjects();
+  const index = projects.findIndex((item) => item.slug === slug);
+  const project = projects[index];
   if (!project) notFound();
-
+  type TextKey = (typeof sectionDefinitions)[number]["key"];
+  const sections: { key: TextKey | "screenshots" | "demo"; label: string }[] = [];
+  for (const definition of sectionDefinitions) {
+    if (project[definition.key].trim()) sections.push(definition);
+    if (definition.key === "implementation") {
+      if (project.gallery.length) sections.push({ key: "screenshots", label: "Screenshots" });
+      if (project.demo) sections.push({ key: "demo", label: "Try the project" });
+    }
+  }
+  const discipline = disciplines.find((item) => item.slug === project.discipline);
+  const previous = projects[index - 1];
+  const next = projects[index + 1];
   return (
-    <section className="mx-auto max-w-[1180px] px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12">
-      <Link
-        href="/work"
-        className="
-          inline-flex items-center gap-3
-          rounded-full
-          border border-(--color-border-strong)
-          px-5 py-3
-          font-mono text-xs font-medium uppercase
-          tracking-[0.14em]
-          text-(--color-ink-muted)
-          transition-all duration-200
-          hover:border-(--color-primary)
-          hover:bg-(--enyo-button)
-          hover:text-white
-        "
-      >
-        <span aria-hidden="true" className="text-base leading-none">
-          ←
-        </span>
-        <span>Return to work</span>
-      </Link>
-
-      <div className="mt-8">
-        <p className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-(--color-primary)">
-          Project /{" "}
-          {String(
-            projects.findIndex((p) => p.slug === project.slug) + 1,
-          ).padStart(2, "0")}
-        </p>
-
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <span className="inline-flex rounded-full border border-(--color-primary)/25 bg-(--color-primary)/[0.06] px-3 py-1.5 font-mono text-[9px] font-medium uppercase tracking-[0.1em] text-(--color-primary)">
-            {DISCIPLINE_LABELS[project.discipline]}
-          </span>
-          <StatusBadge status={project.status} />
+    <div className={styles.detailPage}>
+      <Link href="/work" className={styles.back}><span aria-hidden="true">←</span> Return to work</Link>
+      <header className={styles.projectIntro}>
+        <div className={styles.projectIdentity}>
+          <div className={styles.projectMeta}><Link href={`/work?discipline=${project.discipline}`}>{discipline?.name}</Link><StatusBadge status={project.status} /></div>
+          <h1>{project.title}</h1>
+          <p className={styles.lead}>{project.summary}</p>
+          <div className={styles.tags}>{project.stack.filter((tag) => tag !== "In Progress").map((tag) => <span key={tag}>{tag}</span>)}</div>
+          {(project.repoUrl || project.liveUrl) && <div className={styles.actions}>
+            {project.liveUrl && <a className={styles.primary} href={project.liveUrl} target="_blank" rel="noopener noreferrer">Visit live project <span aria-hidden="true">↗</span></a>}
+            {project.repoUrl && <a className={styles.primary} href={project.repoUrl} target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>}
+          </div>}
         </div>
-
-        <h1 className="mt-6 max-w-5xl font-display text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.88] tracking-[-0.055em] text-(--color-ink)">
-          {project.title}
-        </h1>
-
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-(--color-ink-muted) sm:text-lg">
-          {project.summary}
-        </p>
-      </div>
-
-      <div className="mt-20 grid gap-5 sm:grid-cols-2">
-        {SECTIONS.map(({ key, label }, index) => (
-          <div
-            key={key}
-            className="
-              rounded-[24px]
-              border border-(--color-border)
-              bg-(--color-surface-soft)
-              p-6
-              shadow-[0_8px_24px_rgba(11,16,32,0.04)]
-              sm:p-7
-            "
-          >
-            <div className="flex items-center justify-between gap-4">
-              <span className="font-display text-sm font-medium tracking-[-0.03em] text-(--color-primary)/60">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.16em] text-(--color-primary)">
-                {label}
-              </h2>
-            </div>
-
-            <p className="mt-6 leading-7 text-(--color-ink-muted)">
-              {project[key] as string}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {project.repoUrl && (
-        <a
-          href={project.repoUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-16 inline-flex items-center gap-3 border-b border-(--color-primary)/30 pb-2 font-mono text-xs uppercase tracking-[0.16em] text-(--color-primary) transition-colors hover:border-(--color-primary) hover:text-(--color-primary-hover)"
-        >
-          View repository →
-        </a>
-      )}
-    </section>
+        <figure className={styles.projectFigure}>
+          <div className={styles.detailCover}><WorkMedia project={project} sizes="(max-width: 900px) 90vw, 45vw" /></div>
+          <figcaption>{workImage(project)?.src ? "Project image" : "Illustration of the project; not a product screenshot."}</figcaption>
+        </figure>
+      </header>
+      {sections.length > 0 && <div className={styles.caseLayout}>
+        <CaseNavigation sections={sections.map(({ key, label }) => ({ id: key, label }))} />
+        <article className={styles.caseArticle} aria-label={`${project.title} case study`}>
+          {sections.map(({ key, label }) => (
+            <section key={key} id={key} className={styles.caseSection} aria-labelledby={`${key}-heading`}>
+              <h2 id={`${key}-heading`} tabIndex={-1}>{label}</h2>
+              {key === "screenshots" ? <ProjectGallery images={project.gallery} />
+                : key === "demo" ? project.demo && <InteractiveDemo demo={project.demo} />
+                : project[key].split(/\n\s*\n/).filter((paragraph) => paragraph.trim()).map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+            </section>
+          ))}
+        </article>
+      </div>}
+      {(previous || next) && <nav className={styles.adjacent} aria-label="Other projects">
+        {previous && <Link href={`/work/${previous.slug}`}><span>Previous project</span><strong><span aria-hidden="true">← </span>{previous.title}</strong></Link>}
+        {next && <Link className={styles.nextProject} href={`/work/${next.slug}`}><span>Next project</span><strong>{next.title}<span aria-hidden="true"> →</span></strong></Link>}
+      </nav>}
+    </div>
   );
 }

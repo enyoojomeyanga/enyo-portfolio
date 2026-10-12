@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "seo": {
+    "title": "About — Enyo-ojo Excel Meyanga",
+    "description": "Get to know Enyo-ojo Excel Meyanga: a developer growing from Go foundations into Python and AI engineering, with a focus on understanding the work behind the tools."
+  },
+  "intro": {
+    "label": "About me",
+    "heading": [
+      {
+        "text": "I want to understand"
+      },
+      {
+        "text": "what I'm building.",
+        "accent": true
+      }
+    ],
+    "lead": "I'm Enyo-ojo Excel Meyanga, a developer working toward AI engineering. I'm early in that journey, and I want the understanding behind my work to grow alongside the work itself.",
+    "sideNote": "This page is about the person, the learning, and the choices behind the projects."
+  },
+  "sections": [
+    {
+      "id": "journey",
+      "type": "journey",
+      "status": "published",
+      "label": "My journey",
+      "heading": [
+        "A foundation in Go.",
+        "A direction in AI."
+      ],
+      "intro": "Each stage has changed what I pay attention to when I sit down to build.",
+      "milestones": [
+        {
+          "id": "go-foundation",
+          "label": "The foundation",
+          "title": "Learning to think through code",
+          "paragraphs": [
+            {
+              "id": "go-basics",
+              "children": [
+                {
+                  "text": "I spent roughly six months learning Go. Working with strings, files, slices, and command-line programs taught me to read a specification carefully and pay attention to edge cases."
+                }
+              ]
+            },
+            {
+              "id": "go-reloaded-lesson",
+              "children": [
+                {
+                  "text": "In "
+                },
+                {
+                  "text": "Go-Reloaded",
+                  "href": "/work/go-reloaded"
+                },
+                {
+                  "text": ", punctuation and command ordering were small details that could change the whole output. Those details made me think more carefully about how a program handles its input."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "python-shift",
+          "label": "The shift",
+          "title": "Moving into Python",
+          "paragraphs": [
+            {
+              "id": "python-direction",
+              "children": [
+                {
+                  "text": "Python is now my primary learning language. The move connects my programming foundation with the direction I want to pursue: AI-powered systems. I'm still strengthening the fundamentals as I work toward that goal."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ai-direction",
+          "label": "The direction",
+          "title": "Developing judgment alongside skill",
+          "paragraphs": [
+            {
+              "id": "ai-judgment",
+              "children": [
+                {
+                  "text": "I want to get better at deciding when AI is useful, what needs checking, and how to tell whether a solution actually helps. That is the direction I'm working toward, rather than a claim that I have already mastered it."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "turningPoint": {
+        "status": "draft",
+        "label": "A turning point",
+        "title": "",
+        "paragraphs": []
+      }
+    },
+    {
+      "id": "learning",
+      "type": "learning",
+      "status": "published",
+      "label": "How I learn",
+      "heading": [
+        "Following an example",
+        "is only the beginning."
+      ],
+      "intro": "I learn by taking something apart, rebuilding it, trying variations, and reflecting on the mistakes. AI can help me move forward, but I still need to understand the decisions I keep.",
+      "checksLabel": "The checks I use",
+      "checks": [
+        {
+          "id": "rebuild",
+          "title": "Rebuild it without copying",
+          "text": "Close the reference and try again from memory. That shows me what I understood and what I only followed."
+        },
+        {
+          "id": "vary",
+          "title": "Change the conditions",
+          "text": "Try a variation or an awkward input. A solution should make sense beyond the example I started with."
+        },
+        {
+          "id": "explain",
+          "title": "Explain the decisions",
+          "text": "Describe what the code does, why I chose that structure, and where it still needs work."
+        }
+      ],
+      "example": {
+        "status": "draft",
+        "label": "A real learning example",
+        "title": "",
+        "paragraphs": []
+      }
+    },
+    {
+      "id": "interests",
+      "type": "prose",
+      "status": "published",
+      "label": "What draws me in",
+      "heading": [
+        "The friction people",
+        "learn to live with."
+      ],
+      "paragraphs": [
+        {
+          "id": "friction",
+          "children": [
+            {
+              "text": "A repetitive task. A confusing process. Something that takes more effort than it should. These are the kinds of problems that make me curious, whether someone brings them to me or I notice them myself."
+            }
+          ]
+        },
+        {
+          "id": "communication",
+          "children": [
+            {
+              "text": "I also care about how people understand what they see. My interest in visual communication sits alongside programming because the way something is presented can make it easier or harder to use."
+            }
+          ]
+        },
+        {
+          "id": "growth",
+          "children": [
+            {
+              "text": "I want to keep getting better at connecting those observations with the technical understanding needed to do something about them."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beyond-code",
+      "type": "prose",
+      "status": "draft",
+      "label": "Beyond the code",
+      "heading": [
+        "The person outside the projects."
+      ],
+      "paragraphs": []
+    },
+    {
+      "id": "collaboration",
+      "type": "collaboration",
+      "status": "published",
+      "label": "Keep exploring",
+      "heading": [
+        "Now you know a little more."
+      ],
+      "paragraphs": [
+        {
+          "id": "invitation",
+          "children": [
+            {
+              "text": "The projects show where this learning is taking shape."
+            }
+          ]
+        }
+      ],
+      "opportunities": [],
+      "actions": [
+        {
+          "id": "work",
+          "label": "See the work",
+          "href": "/work",
+          "variant": "primary"
+        },
+        {
+          "id": "contact",
+          "label": "Start a conversation",
+          "href": "/contact",
+          "variant": "secondary"
+        }
+      ]
+    }
+  ]
+}
