@@ -27,7 +27,7 @@ export function Nav() {
                 priority
               />
             ) : (
-              <span className="enyo-brand-temporary-mark">E</span>
+              <span className="enyo-brand-temporary-mark">EM</span>
             )}
           </span>
           <span className="enyo-brand-copy">

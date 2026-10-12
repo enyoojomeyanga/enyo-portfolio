@@ -1,5 +1,9 @@
+
 {
   "heroIntro": "",
-  "brandLogo": null,
+  "brandLogo": {
+    "src": "/brand/emeyanga-symbol.svg",
+    "alt": "EMEYANGA brand symbol"
+  },
   "projectImages": {}
 }
