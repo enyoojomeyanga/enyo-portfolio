@@ -4,3 +4,10 @@ out
 .env*
 .DS_Store
 tsconfig.tsbuildinfo
+
+# Local recovery and update backups
+.git_backup/
+.portfolio-update-backups/
+portfolio-update-backups/
+homepage-backup-*/
+homepage-refinement-backup-*/

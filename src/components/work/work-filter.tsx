@@ -17,6 +17,7 @@ const progressFilters: { value: Progress; label: string }[] = [{ value: "all", l
 export function WorkFilter({ projects, initialFilter = "all", initialStatus = "all" }: { projects: WorkListing[]; initialFilter?: Filter; initialStatus?: Progress }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const discipline = disciplines.find((item) => item.slug === initialFilter);
   const filtered = projects.filter((project) => (initialFilter === "all" || project.discipline === initialFilter) && (initialStatus === "all" || project.status === initialStatus));
   function changeFilter(discipline: Filter, status: Progress) {
     const params = new URLSearchParams();
@@ -36,6 +37,11 @@ export function WorkFilter({ projects, initialFilter = "all", initialStatus = "a
           <div className={styles.filterButtons}>{progressFilters.map((filter) => <button key={filter.value} type="button" disabled={pending} aria-pressed={initialStatus === filter.value} className={`${styles.filterButton} ${initialStatus === filter.value ? styles.active : ""}`} onClick={() => changeFilter(initialFilter, filter.value)}>{filter.label}</button>)}</div>
         </div>
       </div>
+      {discipline && <aside className={styles.disciplineContext} aria-label={`About ${discipline.name}`}>
+        <div><h2>{discipline.name}</h2><p>{discipline.focus}</p><ul>{discipline.examples.map((example) => <li key={example}>{example}</li>)}</ul></div>
+        <Link className={styles.contextAction} href={`/contact?topic=${discipline.contactTopic}#topics-heading`}>Discuss this area <span aria-hidden="true">→</span></Link>
+      </aside>}
+      <p className={styles.statusGuide}>Built: working projects. Building: work in progress. Exploring: early investigation.</p>
       <div className={styles.resultsHeader}>
         <p role="status" aria-live="polite">{pending ? "Updating projects…" : `${filtered.length} ${filtered.length === 1 ? "project" : "projects"}${initialFilter === "all" && initialStatus === "all" ? " in the directory" : " match your filters"}`}</p>
         {(initialFilter !== "all" || initialStatus !== "all") && <button type="button" className={styles.reset} disabled={pending} onClick={() => changeFilter("all", "all")}>Clear filters <span aria-hidden="true">×</span></button>}
@@ -63,8 +69,8 @@ export function WorkFilter({ projects, initialFilter = "all", initialStatus = "a
           </ul>
         ) : (
           <div className={styles.empty}>
-            <h2>No projects match these filters.</h2>
-            <p>{projects.length ? "Try another discipline or progress status. I’ll add work here as there is real progress to share." : "Projects will appear here when there is real work to share."}</p>
+            <h2>{discipline && !projects.some((project) => project.discipline === discipline.slug) ? "No published case studies here yet." : "No projects match these filters."}</h2>
+            <p>{discipline && !projects.some((project) => project.discipline === discipline.slug) ? "You can still discuss a brief in this area using the link above. This directory will only show work with real progress to share." : projects.length ? "Try another discipline or progress status. I’ll add work here as there is real progress to share." : "Projects will appear here when there is real work to share."}</p>
             {(initialFilter !== "all" || initialStatus !== "all") && <button type="button" className={styles.primary} disabled={pending} onClick={() => changeFilter("all", "all")}>Show all work <span aria-hidden="true">→</span></button>}
           </div>
         )}

@@ -45,6 +45,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     }
   }
   const discipline = disciplines.find((item) => item.slug === project.discipline);
+  const readingMinutes = Math.max(1, Math.ceil(sectionDefinitions.map(({ key }) => project[key]).join(" ").split(/\s+/).filter(Boolean).length / 200));
   const previous = projects[index - 1];
   const next = projects[index + 1];
   return (
@@ -66,6 +67,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <figcaption>{workImage(project)?.src ? "Project image" : "Illustration of the project; not a product screenshot."}</figcaption>
         </figure>
       </header>
+      <dl className={styles.projectFacts} aria-label="Project overview">
+        <div><dt>Progress</dt><dd>{project.status === "built" ? "Working project" : project.status === "building" ? "Work in progress" : "Early investigation"}</dd></div>
+        <div><dt>Reading time</dt><dd>About {readingMinutes} {readingMinutes === 1 ? "minute" : "minutes"}</dd></div>
+        <div><dt>Available to explore</dt><dd>{[project.repoUrl && "Source code", project.liveUrl && "Live project", project.gallery.length > 0 && "Screenshots", project.demo && "Demo"].filter(Boolean).join(" · ") || "Project notes"}</dd></div>
+      </dl>
       {sections.length > 0 && <div className={styles.caseLayout}>
         <CaseNavigation sections={sections.map(({ key, label }) => ({ id: key, label }))} />
         <article className={styles.caseArticle} aria-label={`${project.title} case study`}>
@@ -79,6 +85,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ))}
         </article>
       </div>}
+      <aside className={styles.projectConversation}><div><h2>Have a related problem?</h2><p>Use this project as a starting point for a conversation about your own brief.</p></div><Link className={styles.primary} href={`/contact?topic=${discipline?.contactTopic ?? "technical"}#topics-heading`}>Discuss a project <span aria-hidden="true">→</span></Link></aside>
       {(previous || next) && <nav className={styles.adjacent} aria-label="Other projects">
         {previous && <Link href={`/work/${previous.slug}`}><span>Previous project</span><strong><span aria-hidden="true">← </span>{previous.title}</strong></Link>}
         {next && <Link className={styles.nextProject} href={`/work/${next.slug}`}><span>Next project</span><strong>{next.title}<span aria-hidden="true"> →</span></strong></Link>}

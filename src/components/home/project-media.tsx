@@ -4,7 +4,7 @@ import { siteContent } from "@/content/site-content";
 import { HomeArtwork } from "./home-artwork";
 
 export function ProjectMedia({ project }: { project: Project }) {
-  const image = siteContent.projectImages[project.slug];
+  const image = project.cover ?? siteContent.projectImages[project.slug];
 
   if (!image?.src || !image.alt) {
     return <HomeArtwork slug={project.slug} />;

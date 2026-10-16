@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment } from "react";
 import type { Metadata } from "next";
 import { getAboutContent } from "@/content/about-content";
@@ -23,6 +24,9 @@ export default async function AboutPage() {
           {content.intro.sideNote && <p className={styles.sideNote}>{content.intro.sideNote}</p>}
         </div>
       </header>
+      <nav className={styles.pageLinks} aria-label="On this About page">
+        {content.sections.filter((section) => section.status === "published").map((section) => <Link key={section.id} href={`#about-${section.id}`}>{section.label}<span aria-hidden="true">↓</span></Link>)}
+      </nav>
       {content.sections.filter((section) => section.status === "published").map((section) => <AboutSectionView key={section.id} section={section} />)}
     </div>
   );

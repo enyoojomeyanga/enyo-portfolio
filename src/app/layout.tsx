@@ -3,6 +3,7 @@ import { Newsreader, Manrope, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
 import "./home-premium.css";
+import "./portfolio-polish.css";
 
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";

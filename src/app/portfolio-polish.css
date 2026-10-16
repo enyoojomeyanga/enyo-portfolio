@@ -1,0 +1,13 @@
+/* A quiet identity field, using CSS imagery rather than a heavy photograph. */
+#main-content { background-image: radial-gradient(ellipse at 90% 0%,color-mix(in srgb,var(--enyo-link) 9%,transparent),transparent 38%),radial-gradient(ellipse at 0% 25%,color-mix(in srgb,var(--enyo-link) 4%,transparent),transparent 40%); background-size: 100% 820px; background-repeat: no-repeat; }
+.enyo-page-enter { position: relative; isolation: isolate; }
+.enyo-page-enter::before { content: ""; position: absolute; inset: 0 0 auto; height: 440px; z-index: -1; pointer-events: none; background-image: linear-gradient(color-mix(in srgb,var(--enyo-line) 22%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--enyo-line) 22%,transparent) 1px,transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(110deg,transparent 45%,#000); }
+.enyo-service-evidence { margin-top: auto; padding-top: 22px; font-size: 12px; line-height: 1.7; color: var(--enyo-muted); }
+.enyo-media-caption { position: absolute; bottom: 12px; left: 12px; z-index: 5; padding: 4px 8px; border-radius: 6px; background: #0b1222; color: #d6e3ff; font-size: 11px; }
+.enyo-empty-action { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 16px; color: var(--enyo-link); font-weight: 650; }
+@media (prefers-reduced-motion: no-preference) {
+ .enyo-page-enter { animation: enyo-page-arrive 240ms ease-out; }
+ @keyframes enyo-page-arrive { from { opacity: .7; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width: 639px) { .enyo-page-enter::before { height: 320px; background-size: 48px 48px; opacity: .6; } }
+@media (forced-colors: active) { .enyo-page-enter::before { display: none; } }

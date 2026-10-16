@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Discipline, Project } from "@/content/projects";
 import { ProjectMedia } from "./project-media";
+import { siteContent } from "@/content/site-content";
 import { disciplines } from "@/content/disciplines";
 
 type Filter = "all" | Discipline;
@@ -40,7 +41,7 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
               </button>
             ))}
           </div>
-          <span className="enyo-entry-count" role="status" aria-live="polite"><span className="enyo-count-desktop">{visible.length} {visible.length === 1 ? "project" : "projects"}{filtered.length > visible.length ? ` of ${filtered.length}` : ""}</span><span className="enyo-count-mobile">{String(visible.length).padStart(2, "0")} entries</span></span>
+          <span className="enyo-entry-count" role="status" aria-live="polite"><span className="enyo-count-desktop">{visible.length} {visible.length === 1 ? "project" : "projects"}{filtered.length > visible.length ? ` of ${filtered.length}` : ""}</span><span className="enyo-count-mobile">{visible.length} {visible.length === 1 ? "project" : "projects"}</span></span>
         </div>
       </div>
 
@@ -50,6 +51,7 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
             <Link key={project.slug} href={`/work/${project.slug}`} className="enyo-work-card">
               <div className="enyo-work-art-wrap">
                 <ProjectMedia project={project}/>
+                {!(project.cover?.src || siteContent.projectImages[project.slug]?.src) && <span className="enyo-media-caption">Illustration</span>}
                 <span className={`enyo-art-status enyo-art-status-${project.status}`}>{project.status === "built" ? "Built" : project.status === "building" ? "Building" : "Exploring"}</span>
               </div>
               <div className="enyo-work-card-content">
@@ -68,6 +70,7 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
         <div className="enyo-no-projects">
           <p>No published projects in this category yet.</p>
           <span>Projects will appear here when there&apos;s real work to show.</span>
+          <Link className="enyo-empty-action" href={`/contact?topic=${disciplines.find((item) => item.slug === filter)?.contactTopic ?? "technical"}#topics-heading`}>Discuss this area <span aria-hidden="true">→</span></Link>
         </div>
       )}
       <div className="enyo-work-browse">

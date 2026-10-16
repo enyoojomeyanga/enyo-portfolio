@@ -85,3 +85,8 @@
 .opportunities { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 20px; }
 .opportunities li { border-top: 1px solid var(--enyo-line); padding-top: 16px; }
 .opportunities h3 { font-size: 22px; margin-top: 0; }
+
+.pageLinks { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 28px; }
+.pageLinks a { display: inline-flex; align-items: center; gap: 14px; min-height: 44px; padding: 10px 14px; border: 1px solid var(--enyo-line); border-radius: 12px; background: var(--enyo-card); font-size: 13px; font-weight: 600; color: var(--enyo-link); }
+.page section[id] { scroll-margin-top: 112px; }
+@media (hover: hover) { .pageLinks a:hover { border-color: var(--enyo-link); } }

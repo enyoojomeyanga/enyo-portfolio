@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "seo": {
+    "title": "Contact",
+    "description": "Contact Enyo-ojo Excel Meyanga about technical projects, design, digital visibility, collaboration or opportunities."
+  },
+  "intro": {
+    "label": "Contact",
+    "heading": [
+      "Tell me what",
+      "you have in mind."
+    ],
+    "description": "A technical challenge, a design brief, or an opportunity to work together. Share a little context and we can start the conversation."
+  },
+  "topics": {
+    "label": "What would you like to discuss?",
+    "heading": "A little context goes a long way.",
+    "description": "Choose a topic to open an editable email template. Replace the bracketed details with your own before sending.",
+    "items": [
+      {
+        "id": "technical",
+        "title": "Engineering & AI",
+        "description": "Share the problem, your current setup, and what a useful solution would look like.",
+        "subject": "Technical project enquiry",
+        "prompts": [
+          "The problem:",
+          "Current setup or tools:",
+          "What I have tried:",
+          "Desired outcome:"
+        ],
+        "template": "Hi Enyo-ojo,\n\nMy name is [your name]. I’m reaching out about [project or technical problem].\n\nI need help with [describe the problem]. My current setup is [tools or system], and I have already tried [what you have tried].\n\nThe outcome I’m aiming for is [desired result]. My timeline is [timeline, if known].\n\nWould you be open to discussing this?\n\nBest,\n[your name]\n[company or organisation, optional]"
+      },
+      {
+        "id": "design-visibility",
+        "title": "Design & business visibility",
+        "description": "Introduce your business or project, the audience you want to reach, and the support you need.",
+        "subject": "Design or business visibility enquiry",
+        "prompts": [
+          "Business or project:",
+          "Audience:",
+          "Design or visibility support needed:",
+          "Desired outcome:"
+        ],
+        "template": "Hi Enyo-ojo,\n\nMy name is [your name]. I’m working on [business or project] and looking for design or visibility support.\n\nI need help with [specific needs]. The audience I want to reach is [audience], and my current online presence is [website or profile links, if any].\n\nMy goal is [desired outcome]. My timeline is [timeline, if known].\n\nCould we discuss what support would be appropriate?\n\nBest,\n[your name]\n[company or organisation, optional]"
+      },
+      {
+        "id": "collaboration",
+        "title": "Work & collaboration",
+        "description": "Tell me what you are building, where I could contribute, and the scope you have in mind.",
+        "subject": "Work or collaboration enquiry",
+        "prompts": [
+          "What we are building:",
+          "Where you would like me to contribute:",
+          "Scope:",
+          "Timeline, if known:"
+        ],
+        "template": "Hi Enyo-ojo,\n\nMy name is [your name]. I’d like to discuss a possible collaboration on [project].\n\nWe’re building [brief description], and I think you could contribute through [specific role or task].\n\nThe scope would be [expected responsibilities], with a timeline of [timeline, if known]. More context: [relevant link, optional].\n\nWould you be interested in discussing it?\n\nBest,\n[your name]\n[company or organisation, optional]"
+      },
+      {
+        "id": "opportunity",
+        "title": "Opportunities & referrals",
+        "description": "Share the opportunity, why you think it is a fit, and any relevant links or next steps.",
+        "subject": "Opportunity or referral",
+        "prompts": [
+          "The opportunity:",
+          "Why it might be a fit:",
+          "Relevant links:",
+          "Next steps:"
+        ],
+        "template": "Hi Enyo-ojo,\n\nMy name is [your name]. I’d like to share [opportunity or referral].\n\nIt involves [brief description]. I thought of you because [why it might be a fit].\n\nThe details are [requirements or context], and the next step would be [next step or deadline, if any]. More information: [link, optional].\n\nLet me know if you’d like to discuss it.\n\nBest,\n[your name]\n[company or organisation, optional]"
+      }
+    ]
+  },
+  "social": {
+    "label": "Professional profiles",
+    "heading": "Code and connections.",
+    "platforms": [
+      "github",
+      "linkedin"
+    ]
+  },
+  "emailUnavailable": "You can reach me through the profiles below."
+}

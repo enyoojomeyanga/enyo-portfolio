@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { BackToTop } from "./back-to-top";
+import { scrollToPageTop } from "./scroll-to-top";
+import styles from "./navigation-refinement.module.css";
 import { ThemeToggle } from "./theme-toggle";
 import { navigation, profile } from "@/content/profile";
 import { siteContent } from "@/content/site-content";
@@ -17,13 +20,25 @@ export function Nav() {
   const header = useRef<HTMLElement>(null);
   const isCurrent = (href: string) => href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
+  const pageLinks = navigation.filter((item) => item.href !== "/contact");
+
+  function handlePageLink(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    setMenuPath(null);
+    if (pathname === href) {
+      event.preventDefault();
+      if (menuOpen) menuButton.current?.focus({ preventScroll: true });
+      scrollToPageTop();
+    }
+  }
+
   useEffect(() => {
     if (!menuOpen) return;
-    menu.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+    menu.current?.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
     function dismiss(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setMenuPath(null);
-        menuButton.current?.focus();
+        menuButton.current?.focus({ preventScroll: true });
       }
     }
     function outside(event: PointerEvent) {
@@ -41,12 +56,7 @@ export function Nav() {
     };
   }, [menuOpen]);
 
-  return (
-    <header className="enyo-header" ref={header} onBlur={(event) => {
-      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMenuPath(null);
-    }}>
-      <nav className="enyo-nav" aria-label="Primary navigation">
-        <Link href="/" className="enyo-brand" aria-label={`${profile.fullName}, home`} onClick={() => setMenuPath(null)}>
+  const brand = (<>
           <span className="enyo-brand-mark" aria-hidden="true">
             {siteContent.brandLogo?.src ? (
               <Image
@@ -76,15 +86,25 @@ export function Nav() {
             <span className="enyo-brand-name">{profile.fullName}</span>
             <span className="enyo-brand-caption">{profile.role}</span>
           </span>
-        </Link>
+  </>);
+
+  return (
+    <>
+    <header className="enyo-header" ref={header} onBlur={(event) => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMenuPath(null);
+    }}>
+      <nav className="enyo-nav" aria-label="Primary navigation">
+        <button type="button" className={`enyo-brand ${styles.desktopBrand}`} aria-label={`${profile.fullName}, back to top`} onClick={() => scrollToPageTop()}>{brand}</button>
+        <Link href="/" className={`enyo-brand ${styles.mobileBrand}`} aria-label={`${profile.fullName}, home`} onClick={(event) => handlePageLink(event, "/")}>{brand}</Link>
 
         <div className="enyo-nav-links">
-          {navigation.map((item) => {
+          {pageLinks.map((item) => {
             const current = isCurrent(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(event) => handlePageLink(event, item.href)}
                 aria-current={current ? "page" : undefined}
                 className={`enyo-nav-link ${current ? "is-current" : ""}`}
               >
@@ -96,7 +116,7 @@ export function Nav() {
 
         <div className="enyo-nav-actions">
         <ThemeToggle />
-        <Link href="/contact" className="enyo-nav-cta">
+        <Link href="/contact" className={`enyo-nav-cta ${pathname === "/contact" ? styles.currentCta : ""}`} aria-current={pathname === "/contact" ? "page" : undefined} onClick={(event) => handlePageLink(event, "/contact")}>
           Let&apos;s talk <span aria-hidden="true">→</span>
         </Link>
 
@@ -115,14 +135,16 @@ export function Nav() {
       </nav>
       {menuOpen && (
         <div ref={menu} className="enyo-mobile-navigation" id="enyo-mobile-navigation" role="navigation" aria-label="Mobile navigation">
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined} onClick={() => setMenuPath(null)}>
+          {pageLinks.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined} onClick={(event) => handlePageLink(event, item.href)}>
               {item.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setMenuPath(null)}>Let&apos;s talk →</Link>
+          <Link href="/contact" className={styles.mobileCta} aria-current={pathname === "/contact" ? "page" : undefined} onClick={(event) => handlePageLink(event, "/contact")}>Let&apos;s talk <span aria-hidden="true">→</span></Link>
         </div>
       )}
     </header>
+    <BackToTop menuOpen={menuOpen} />
+    </>
   );
 }

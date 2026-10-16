@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { profile } from "@/content/profile";
-import { projects } from "@/content/projects";
+import { getProjects } from "@/content/project-source";
 import { exploringTopics } from "@/content/exploring";
 import { HomeProjects } from "@/components/home/home-projects";
 import { disciplines } from "@/content/disciplines";
@@ -40,7 +40,8 @@ const approach = [
   { step: "04", title: "Improve", description: "Test, learn, and iterate." },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
   const built = projects.filter((project) => project.status === "built");
   const building = projects.filter((project) => project.status === "building");
   const nameParts = profile.fullName.trim().split(/\s+/);
@@ -104,6 +105,7 @@ export default function Home() {
             </div>
             <h3>{service.name}</h3>
             <p>{service.description}</p>
+            <span className="enyo-service-evidence">{projects.filter((project) => project.discipline === service.slug).length ? `${projects.filter((project) => project.discipline === service.slug).length} published projects` : "Scope & enquiries · case studies coming later"}</span>
           </Link>
         ))}
         </div>

@@ -43,7 +43,7 @@ export function AboutSectionView({ section }: { section: AboutSection }) {
   switch (section.type) {
     case "journey":
       return (
-        <section className={styles.journey} aria-labelledby={`${section.id}-heading`}>
+        <section id={`about-${section.id}`} className={styles.journey} aria-labelledby={`${section.id}-heading`}>
           <SectionIntro section={section} />
           <div className={styles.sectionBody}>
             <ol className={styles.timeline}>
@@ -64,7 +64,7 @@ export function AboutSectionView({ section }: { section: AboutSection }) {
       );
     case "learning":
       return (
-        <section className={styles.learning} aria-labelledby={`${section.id}-heading`}>
+        <section id={`about-${section.id}`} className={styles.learning} aria-labelledby={`${section.id}-heading`}>
           <SectionIntro section={section} />
           <div className={styles.learningDetail}>
             <p className={styles.listLabel}>{section.checksLabel}</p>
@@ -82,14 +82,14 @@ export function AboutSectionView({ section }: { section: AboutSection }) {
       );
     case "prose":
       return (
-        <section className={styles.interests} aria-labelledby={`${section.id}-heading`}>
+        <section id={`about-${section.id}`} className={styles.interests} aria-labelledby={`${section.id}-heading`}>
           <SectionIntro section={section} />
           <div className={styles.prose}><Paragraphs items={section.paragraphs} /></div>
         </section>
       );
     case "collaboration":
       return (
-        <section className={styles.next} aria-labelledby={`${section.id}-heading`}>
+        <section id={`about-${section.id}`} className={styles.next} aria-labelledby={`${section.id}-heading`}>
           <div className={styles.nextCopy}>
             <p className={styles.eyebrow}>{section.label}</p>
             <h2 id={`${section.id}-heading`}><HeadingLines lines={section.heading} /></h2>

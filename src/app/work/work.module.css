@@ -133,3 +133,19 @@
   .demoDescription { padding: 16px; }
   .demoFrame { height: min(65dvh,560px); min-height: 360px; }
 }
+
+.disciplineContext { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 24px; padding: 28px; border: 1px solid var(--enyo-line); border-radius: 20px; background: var(--enyo-subtle); }
+.disciplineContext h2 { margin: 0 0 12px; font: 600 30px/1.2 var(--font-newsreader),Georgia,serif; }
+.disciplineContext p { max-width: 65ch; margin: 0; color: var(--enyo-muted); font-size: 15px; line-height: 1.75; }
+.disciplineContext ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 18px 0 0; }
+.disciplineContext li { border: 1px solid var(--enyo-line); padding: 6px 10px; border-radius: 8px; color: var(--enyo-muted); font-size: 12px; line-height: 1.5; }
+.contextAction { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; flex-shrink: 0; color: var(--enyo-link); font-size: 14px; font-weight: 650; }
+.statusGuide { margin: 20px 0 0; color: var(--enyo-muted); font-size: 13px; line-height: 1.8; }
+.projectFacts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding: 24px; margin: 0 0 32px; border: 1px solid var(--enyo-line); border-radius: 16px; background: var(--enyo-card); }
+.projectFacts dt { margin: 0 0 8px; color: var(--enyo-muted); font-size: 12px; line-height: 1.6; }
+.projectFacts dd { margin: 0; color: var(--enyo-heading); font-size: 14px; font-weight: 600; line-height: 1.6; }
+.projectConversation { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 32px; padding: 28px; border: 1px solid var(--enyo-line); border-radius: 20px; background: var(--enyo-subtle); }
+.projectConversation h2 { margin: 0 0 12px; font: 600 30px/1.2 var(--font-newsreader),Georgia,serif; }
+.projectConversation p { max-width: 55ch; margin: 0; color: var(--enyo-muted); font-size: 15px; line-height: 1.75; }
+.projectConversation .primary { flex-shrink: 0; }
+@media (max-width: 760px) { .disciplineContext, .projectConversation { flex-direction: column; align-items: flex-start; padding: 24px 20px; } .projectFacts { grid-template-columns: minmax(0,1fr); gap: 18px; padding: 20px; } .projectFacts > div + div { padding-top: 18px; border-top: 1px solid var(--enyo-line); } .projectConversation .primary { width: 100%; } }

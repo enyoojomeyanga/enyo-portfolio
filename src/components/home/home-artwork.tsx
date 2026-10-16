@@ -39,6 +39,7 @@ export function HomeArtwork({ slug }: { slug: string }) {
       </div>
     );
   }
+  if (slug !== "ascii-art-generator") return <div className="enyo-art enyo-art-terminal" aria-hidden="true"><span className="enyo-art-ascii-title">Project</span></div>;
   return (
     <div className="enyo-art enyo-art-ascii" aria-hidden="true">
       <div className="enyo-art-ascii-lines"/>

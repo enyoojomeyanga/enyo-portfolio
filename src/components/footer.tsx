@@ -1,50 +1,41 @@
 import Link from "next/link";
+import { SocialIcon } from "./social-icon";
+import styles from "./footer.module.css";
 import { profile } from "@/content/profile";
+
+const socialProfiles = [
+  { platform: "x", label: "X" },
+  { platform: "instagram", label: "Instagram" },
+  { platform: "facebook", label: "Facebook" },
+] as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
-
   return (
-    <footer className="mt-12 border-t border-(--color-border)">
-      <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="max-w-md font-display text-base font-medium leading-relaxed tracking-tight text-(--color-ink-muted)">
-              Still building. Still learning. Still moving forward.
-            </p>
-
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-(--color-ink-faint)">
-              
-              AI systems / LLMs / computer vision
-              <br />
-              Abuja, Nigeria
-            </p>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.main}>
+          <div className={styles.message}>
+            <p className={styles.statement}>Still building. Still learning.<br />Still moving forward.</p>
+            <p className={styles.disciplines}>Engineering / visual communication / digital visibility</p>
           </div>
-
-          <div className="flex flex-col gap-5 sm:items-end">
-            <Link
-              href="/contact"
-              className="
-                group min-h-11 inline-flex items-center gap-2
-                font-mono text-xs uppercase
-                tracking-[0.16em] text-(--color-primary)
-                transition-colors duration-180
-                hover:text-(--color-primary-hover)
-              "
-            >
-              HAVE A PROBLEM WORTH SOLVING?
-              <span className="transition-transform duration-180 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-
-            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-(--color-ink-faint)">
-              {profile.fullName}
-              <br/>
-              AI Engineer
-              © {year} 
-            </p>
+          <Link href="/contact" className={styles.cta}>
+            <span>Have a problem worth solving?</span>
+            <span className={styles.arrow} aria-hidden="true">→</span>
+          </Link>
+        </div>
+        <div className={styles.bottom}>
+          <div className={styles.identity}>
+            <p className={styles.name}>{profile.fullName}</p>
+            <p className={styles.details}>{profile.role} · Abuja, Nigeria · © {year}</p>
           </div>
+          <nav className={styles.socials} aria-label="Personal social profiles">
+            {socialProfiles.map(({ platform, label }) => profile.links[platform] && (
+              <a key={platform} href={profile.links[platform]} target="_blank" rel="noopener noreferrer" aria-label={`${label} (opens in a new tab)`} title={label}>
+                <SocialIcon platform={platform} />
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>
